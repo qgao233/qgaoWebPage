@@ -1,0 +1,156 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+
+#model-frame-mask{
+	position: fixed;
+	background: #ccc;
+	filter: alpha(opacity=50); 
+	opacity: .5;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	top:0;
+	left: 0;
+	bottom:0;
+	right:0;
+	display: none;
+}
+
+#model-frame{
+	position: fixed;
+	background: #fff;
+	width: 600px;
+	border:solid 1px #eee;
+	border-radius: 5px;
+	z-index: 101;
+	top:100px;
+	left: 50%;
+	margin-left: -300px;
+	box-shadow: 0 0 15px #ccc;
+	display: none;
+}
+
+#img-title{
+	border-bottom: 1px solid #eee;
+	padding: 5px 15px;
+}
+
+#img-title h4{
+	margin: 10px 0;
+}
+
+#img-title div{
+	float: right;
+}
+
+#file-input{
+	padding: 5px 10px;
+    position: relative;
+    left:15px;
+    top:10px;
+    cursor: pointer;
+    color: #888;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1
+}
+
+#file-input:hover {
+    color: #444;
+    background: #eee;
+    border-color: #ccc;
+    text-decoration: none
+}
+
+#file-input-tip{
+	position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer
+}
+
+#img-container{
+	padding: 10px 10px;
+}
+
+#img-container > div{
+	float: left;
+	padding: 5px 5px;
+}
+
+.img-left .img-show,.img-preview{
+	border: 1px solid #eee;
+}
+
+.img-right > div{
+	margin-bottom: 10px;
+}
+
+.img-button button{
+	display: block;
+	width:120px;
+	height: 30px;
+	outline: none;
+	margin-bottom: 10px;
+	color: #fff;
+	border-radius: 5px;
+}
+
+.img-button .rotate-right{
+    background: #27f;
+    border: 1px solid #27f;
+}
+
+.img-button .rotate-right:active{
+    background: #24f;
+    border: 1px solid #24f;
+}
+
+.img-button .rotate-left{
+    background: #f72;
+    border: 1px solid #f72;
+}
+
+.img-button .rotate-left:active{
+    background: #f42;
+    border: 1px solid #f42;
+}
+
+#img-footer{
+	text-align: center;
+}
+
+#img-footer button{
+	width:120px;
+	height: 30px;
+	margin: 10px;
+	outline: none;
+	cursor: pointer;
+	color: #888;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1
+}
+#img-footer button:active{
+	color: #444;
+    background: #eee;
+    border-color: #ccc;
+}
+div.img-btn-cancel{
+	cursor: pointer;
+	font-size:20px;
+}

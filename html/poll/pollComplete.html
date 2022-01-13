@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Poll complete</title>
+		<link rel="shortcut icon" href="../../lanbai.ico" /> 
+		
+		<script src="../../support/jquery/jquery.min.js"></script>
+		<!--<script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>-->
+		<script src="../../support/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../../support/copy/clipboard.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+		
+		
+		<link href="../../support/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/module/lanbai-modal.css" rel="stylesheet">
+		
+		<link href="../../css/common.css" rel="stylesheet">
+		<link href="../../css/poll/createPoll.css" rel="stylesheet">
+		<link href="../../css/poll/pollComplete.css" rel="stylesheet">
+
+		
+		
+		<style>
+			.dd-area{
+				position: fixed;
+				top: 100px;
+				left: 0;
+				font-size: 100px;
+				color: gold;
+				border-radius: 10px;
+				border: 1px solid gold;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="header"></div>
+		<div class="dd-area">Ads<br>Area</div>
+		<div class="pollcomplete-container">
+			<div class="poll-title">
+				<div>
+					<div class="poll-edit">
+						<span class="glyphicon glyphicon-pencil title-icon"></span>
+						<span>Edit</span>
+					</div>
+					<div class="poll-more">
+						<span class="glyphicon glyphicon-chevron-down title-icon"></span>
+						<span>More</span>
+					</div>
+					<div class="poll-invite-button">
+						<span>Invite participants</span>
+						<span class="glyphicon glyphicon-user title-icon">+</span>
+					</div>
+				</div>
+			</div>
+			<div class="poll-content invite-modal">
+				<div class="modal-remove">
+					<div><span class="glyphicon glyphicon-remove"></span></div>
+				</div>
+				<div class="modal-title">
+					<div>Invite participants</div>
+				</div>
+				<div class="modal-input modal-mail-input">
+					<div id="mail-input" class="mail-input textarea" placeholder="Enter emails separated by ','" contenteditable="true"></div>
+				</div>
+				<div class="modal-input modal-note-input">
+					<div id="note-input" class="note-input textarea" placeholder="note you want to tell them" contenteditable="true"></div>
+				</div>
+				<div class="modal-msg-edit">
+					<div>
+						<span class="glyphicon glyphicon-pencil"></span>
+						<span>Edit Message</span>
+					</div>
+				</div>
+				<div class="modal-msg-send">
+					<div id="mail-send" title="to invite">
+						<span class="glyphicon glyphicon-envelope"></span>
+						<span>Send</span>
+					</div>
+				</div>
+				<div class="modal-title modal-link-share">
+					<div>or invite by sharing <span style="border-bottom: 1px solid #fff;cursor: pointer;">this link</span></div>
+				</div>
+				<div class="modal-link-content">
+					<div style="color: #fff;">Everyone with the link can vote – no account required.</div>
+					<div>
+						<span>http://127.0.0.1:8020/front-page/container/poll/pollComplete.html</span>
+						<span style="position: relative;" class="link-copy" title="copy link">copy
+							<div style="position: absolute;bottom: 30px;left: -2px;color: #29f304e0;display: none;">success</div>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="poll-invitor-complete-title">
+				<div>
+					<div class="poll-bg-title">title</div>
+				</div>
+				<div>
+					<span>by</span>
+					<span class="poll-bg-userNickname">host</span>
+					●<span class="poll-bg-createTime">4 days ago</span>
+					●<span>Print</span>
+				</div>
+			</div>
+			<div class="poll-content poll-invitor-complete-content">
+				<div class="invitor-content-premise">
+					<div class="location-mark">
+						<span class="glyphicon glyphicon-map-marker"></span>
+						<span class="poll-bg-location">location</span>
+					</div>
+					<div class="note-mark">
+						<span class="glyphicon glyphicon-paperclip"></span>
+						<span class="poll-bg-note">note</span>
+					</div>
+					<div class="tab-mark">
+						<ul>
+							<li class="active">Table</li>
+							<li>Calendar</li>
+						</ul>
+					</div>
+				</div>
+				<div class="invitor-content-complete">
+					<div class="complete-table">
+						<table border="0">
+							<thead>
+								<tr class="option-tr">
+									<td></td>
+									<td>Feb26TUE</td>
+								</tr>
+								<style>
+									.partIn-people td:first-child{
+										position: relative;
+									}
+									.partIn-people td:first-child .no-suit-tip{
+									    position: absolute;
+									    padding: 20px;
+									    border-radius: 50%;
+									    border: 1px solid coral;
+									    background: coral;
+									    color: #fff;
+									    font-size: 10px;
+									    font-weight: bold;
+									    top: -100px;
+									    left: -50px;
+									    width: 200px;
+									    display: none;
+									}
+									.partIn-people td:first-child .no-suit-tip::after{
+										content: '';
+										display: block;
+									    width: 0;
+									    height: 0;
+									    border: 10px solid transparent;
+									    border-top-color: coral;
+									    position: absolute;
+									    top: 1;
+									    bottom: -20px;
+									    left: 90px;
+									}
+								</style>
+								<tr class="partIn-people">
+									<td>
+										<div class="no-suit-tip"><span>2</span> of all said they were not ideal for these options.</div>
+										<span class="poll-bg-partIn">0</span> participants
+									</td>
+									<td class="partIn-per"><span class="glyphicon glyphicon-ok"></span><span>0</span></td>
+								</tr>
+								<tr class="partIn-option">
+									<td>Anonymous</td>
+									<td class="act"><div class="check-option-box"><span class="glyphicon glyphicon-ok"></span></div></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><input></td>
+									<td>
+										<div class="check-option-box"><span class="glyphicon glyphicon-ok"></span></div>
+										<div class="check-option-unsuit-box" title="If not ideal for you,check this."><span class="glyphicon glyphicon-remove"></span></div>
+										
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div>
+						
+					</div>
+				</div>
+				<div class="invitor-content-send">
+					<div class="send-button">
+						<div>
+							<div style="font-weight: bold;">Send</div>
+						</div>
+						<div class="send-ban-tip">
+							<div>Cannot attend</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="height: 10px;"></div>
+			<div class="poll-content poll-invitor-complete-comment">
+				<div class="invitor-comment-title">
+					<div><span>No</span> comments</div>
+				</div>
+				<div class="invitor-comment-input">
+					<div class="comment-input textarea" placeholder="Add a comment" contenteditable="true"></div>
+					<div class="comment-send">Send</div>
+				</div>
+				<div class="invitor-comment-show">
+					<div class="comment-item">
+						<div class="comment-image">
+							<div class="image-location">
+								<div>q</div>
+							</div>
+						</div>
+						<div class="comment-content">
+							<div class="comment-name">qgao233</div>
+							<div class="comment-time">seconds ago</div>
+							<div class="comment-content-detail">ssssssssssssssss</div>
+						</div>
+						<div class="comment-remove">
+							<span class="glyphicon glyphicon-trash"></span>
+						</div>
+					</div>
+					<div class="comment-item">
+						<div class="comment-image">
+							<div class="image-location">
+								<div>q</div>
+							</div>
+						</div>
+						<div class="comment-content">
+							<div class="comment-name">qgao233</div>
+							<div class="comment-time">seconds ago</div>
+							<div class="comment-content-detail">ssssssssssssssss</div>
+						</div>
+						<div class="comment-remove">
+							<span class="glyphicon glyphicon-trash"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="height: 80px;"></div>
+		</div>
+		<style>
+			#lanbai-modal #model-frame{
+				width: 400px;
+				margin-left: -200px;	
+			}
+		</style>
+		<div id="lanbai-modal">
+			<div id="model-frame-mask"></div>
+			<div id="model-frame">
+				<div id="modal-header">
+					<div class="modal-btn-cancel">×</div>
+					<div class="modal-title-text">信息询问</div>
+				</div>
+				<div id="modal-container">
+					<div>您的邮箱：<input class="fill-mail"></div>
+					<div>您的电话：<input class="fill-phone"></div>
+					<div>您的地址：<input class="fill-address"></div>
+					<div>tips:若不想填写，可直接点确定进行提交</div>
+				</div>
+				<div id="modal-footer">
+					<button class="modal-btn-confirm">确定</button>
+					<button class="modal-btn-cancel">取消</button>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../../js/pollComplete.js"></script>
+	<script>
+		var relative_path = getRelativePath();
+		var front_site = data_file.get_data(relative_path);
+		
+		$(function(){
+	 		initnav(front_site,relative_path);//初始化导航栏的分类
+	 		
+	 		initVotePoll();//初始化投票内容选项
+	 		clickCommentSend();
+	 		switchNoteDiv();
+	 		switchShareDiv();
+	 		switchInviteModal();
+	 		copyLink();
+	 		sendMail();
+	 		modalAnimate();
+	 		editPoll();
+		})
+		
+	</script>
+
+</html>

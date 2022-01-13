@@ -1,0 +1,181 @@
+<style>
+	.lanbai-header{
+		width: 100%;
+		text-align: center;
+		background: #fff;
+		color: #aaa;
+		border:1px solid #ddd;
+
+	}
+	.lanbai-header li{
+		list-style: none;
+	}
+	
+	.lanbai-header a{
+		color: #aaa;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	.lanbai-header a.active{
+		color: #0089ff;
+	}
+	.lanbai-header a:hover{
+		color: #0089ff;
+	}
+	.lanbai-header-container{
+		width: 95%;
+		/*height: 300px;*/
+		display: inline-flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.lanbai-header-container .lanbai-navbar-left,.lanbai-header-container .lanbai-navbar-right{
+		display: inline-flex;
+		justify-content: space-around;
+		align-items: center;
+	}
+	.lanbai-header-container .lanbai-navbar-left>div{
+		padding: 0 10px;
+	}
+	.lanbai-header-container .lanbai-navbar-left .lanbai-navbar-menu>ul,.lanbai-header-container .lanbai-navbar-right .already-login>ul{
+		display: inline-flex;
+		justify-content: space-around;
+	}
+	.lanbai-navbar-logobox .lanbai-nav-logo{
+		font-family: "娃娃体-简","Wawati SC","华文行楷";
+    	font-size: 30px;
+    	font-weight: bold;
+		color: #0089ff;
+	}
+	.lanbai-header-container .lanbai-navbar-left .lanbai-navbar-menu>ul>li>a{
+		display: inline-block;
+		padding: 5px 10px;
+	}
+	/*让省略号垂直居中*/
+	li.left-dropdown{
+		padding: 5px 10px;
+		line-height: 10px;
+		position: relative;
+		cursor: pointer;
+	}
+	.lanbai-navbar-dropdown .lanbai-navbar-dropdown-menu{
+		display: none;
+	}
+	li.left-dropdown:hover .lanbai-navbar-dropdown-menu{
+		display: block;
+	}
+	.lanbai-navbar-dropdown-menu{
+		position: absolute;
+		background: #fff;
+		top: 30px;
+		left: 0;
+		border: 1px solid #eee;
+	}
+	.lanbai-navbar-dropdown-menu a{
+		width: 75px;
+		display: inline-block;
+		padding: 10px 5px;
+		text-align: left;
+	}
+	.lanbai-navbar-dropdown-menu a:hover{
+		background: #eee;
+	}
+	.lanbai-navbar-search{
+		display: inline-flex;
+		justify-content: space-around;
+		align-items: center;
+		padding: 5px;
+	}
+	.lanbai-navbar-search input,.lanbai-navbar-search .btn-search{
+		border:1px solid #ddd;
+		height: 25px;
+		line-height: 25px;
+	}
+	.lanbai-navbar-search input{
+		padding: 5px;
+		border-radius: 5px 0 0 5px;
+		
+	}
+	.lanbai-navbar-search .btn-search{
+		border-left: 0;
+		padding: 5px;
+		border-radius: 0 5px 5px 0;
+		
+	}
+</style>
+<div class="lanbai-header">
+	<div class="lanbai-header-container">
+		<div class="lanbai-navbar-left">
+			<div class="lanbai-navbar-logobox">
+				<a class="navbar-brand lanbai-nav-logo" href="index.html">Lan Bai</a>
+			</div>
+			<div class="lanbai-navbar-menu">
+				<ul>
+					<li><a  class="active" href="/blog/index.html">#</a></li>
+					<li id="write"><!--class="active"--><a href="/blog/container/writeBlog.html">#</a></li>
+					<li><a href="#" >#</a></li>
+					<li><a href="/blog/container/collection.html">#</a></li>
+					<li><a href="/blog/container/topicTheme.html">#</a></li>
+					<li><a href="/blog/container/topicTheme.html">#</a></li>
+					<li class="left-dropdown lanbai-navbar-dropdown">
+						…
+						<ul class="lanbai-navbar-dropdown-menu">
+							<li>
+								<a href="#">#</a>
+							</li>
+							<li>
+								<a href="#">#</a>
+							</li>
+							<li>
+								<a href="#">#</a>
+							</li>
+							<li>
+								<a href="#">#</a>
+							</li>
+							<li>
+								<a href="#">#</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="lanbai-navbar-search">
+				<div class="search-input">
+					<input placeholder="Search" name="search_key">
+				</div>
+				<div class="btn-search">搜索</div>
+			</div>
+		</div>
+		<div class="lanbai-navbar-right">
+			<div class="click-login" style="display: none;">
+				<a class="login-url" href="login/static/login.html">登录/注册</a>
+			</div>
+			<div class="already-login" style="display: block;">
+				<ul >
+					<li>
+						<a class="write-article" href="container/article/writeArticle.html">写文章</a>
+					</li>
+					<li class="lanbai-navbar-dropdown">
+						<div class="lanbai-navbar-dropdown-toggle loged-user" style="white-space: nowrap;">
+							<span class="glyphicon glyphicon-user loged-user-icon"></span>
+							<span class="loged-nick">用户</span>
+						</div>
+						<ul class="lanbai-navbar-dropdown-menu own-choose">
+							<li class="private-page">
+								<a href="/container/user/mainPage.html?user_id=123">个人主页</a>
+							</li>
+							<li>
+								<a href="#">设置</a>
+							</li>
+							<li>
+								<a href="#" class="log-out">退出</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+	</div>
+				
+</div>

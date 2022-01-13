@@ -1,0 +1,144 @@
+*{
+	margin:0;
+	padding:0;
+}
+
+.test{
+	position: absolute;
+	width: 500px;
+	height: 300px; 
+	background: url(../img/test.jpg) no-repeat;
+	z-index: 100;
+}
+
+/*.code_bg{  
+    position: fixed;  
+    top:0;  
+    left: 0;  
+    right:0;  
+    bottom:0;  
+    background-color: rgba(0,255,255,.5);  
+    z-index: 99;  
+}*/
+
+
+
+.code-con{  
+    /*position: absolute;*/  
+    /*top:200px;*/  
+    width: 320px;  
+    margin-left: -10px;
+    /*left: 30%;*/  
+    /*margin-left: -160px;*/  
+    /*background-color: #fff;*/  
+    z-index: 100;  
+    border-radius:15px;
+    -moz-user-select: none;  
+    -webkit-user-select: none;  
+}  
+
+.code-img{  
+    margin: -10px -10px;  
+    padding: 15px 20px;  
+    background-color: #f4ece1;  
+    border-radius: inherit;
+    border: 1px solid #CFCFCF;
+}  
+
+.code-img-position{
+	position: absolute;
+	left:-12px;
+	bottom:40px;
+	display: none;
+}
+
+.code-img img{  
+    display: block;  
+    border: 1px solid #CFCFCF;
+}  
+
+.code-mask{
+	display: none;
+}
+
+.icon-login-bg{  
+    background: url(../img/fresh1.png) -2px -2px;  
+    background-repeat: no-repeat;  
+}  
+
+.icon-w-25{  
+    display: inline-block;  
+    width: 25px;  
+    height: 25px;  
+    border-radius: 25%;
+    text-indent: -9999px;  
+    
+} 
+
+.icon-push{  
+    cursor: pointer;  
+}  
+.code-push{  
+    height: 25px;  
+    text-align: left;
+}  
+.code-btn{  
+    position: relative;  
+    height: 30px;  
+    text-align: center;  
+    color: #999;  
+    margin: 10px 10px;  
+    box-sizing: border-box;  
+    background-color: #f1e5d6;  
+    border-radius: 15px;  
+    border: 1px solid #CFCFCF;
+    box-shadow: 1px 1px 2px 1px inset;  
+}  
+
+.code-btn-m{  
+    position: absolute;  
+    width: 45px;  
+    height: 35px;  
+    border-radius: 40%;  
+    background-color: #f5f6f7;  
+    border: 2px solid #e1e1e1;  
+    z-index: 5;  
+    top:-5px;  
+    /*left: 10px;*/  
+    box-shadow: 0 0 3px 3px #ccc;  
+    cursor: pointer;  
+    background-position: -63px 10px;  
+}  
+
+.code-btn-img{  
+    background:8px 7px url(../img/button.png);  
+    background-repeat: no-repeat;  
+}  
+/*.code-btn-img.active{  
+    background-position: -134px 10px;  
+}  
+.code-btn-img.error{  
+    background-position: 8px 10px;  
+}  */
+
+.code-img-con{  
+    position: relative;  
+}  
+.code-mask{  
+    position: absolute;  
+    top:0;  
+    left: 0;  
+    z-index: 10;  
+}  
+
+.code-tip{  
+    padding-left: 10px;  
+    font-size: 12px;  
+    color: #999;  
+}  
+.code-tip-red{  
+    color: red;  
+}  
+.code-tip-green{  
+    color: green;  
+}  

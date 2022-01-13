@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="shortcut icon" href="../../lanbai.ico" /> 
+		
+		<script src="../../support/jquery/jquery.min.js"></script>
+		<!--<script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>-->
+		<script src="../../support/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+		
+		
+		<link href="../../support/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/module/lanbai-modal.css" rel="stylesheet">
+		<link href="../../css/common.css" rel="stylesheet">
+		<link href="../../css/poll/createPoll.css" rel="stylesheet">
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div id="header"></div>
+		<div class="pollcreate-container">
+			<div class="create-step">step 1 of 4</div>
+			<div class="create-title">What’s the occasion?</div>
+			<div class="create-form">
+				<div class="create-items">
+					<div>
+						<div class="form-item-icon form1-item-icon"><div class="glyphicon glyphicon-align-center"></div></div>
+						<input class="item-input item-input-title" placeholder="Enter Title"/>
+					</div>
+					<div class="clearFloat"></div>
+					<div>
+						<div class="form-item-icon form1-item-icon"><div class="glyphicon glyphicon-map-marker"></div></div>
+						<input class="item-input item-input-location" placeholder="Add Location"/>
+					</div>
+					<div class="clearFloat"></div>
+					<div>
+						<div class="form-item-icon form1-item-icon"><div class="glyphicon glyphicon-paperclip"></div></div>
+						<input class="item-input item-input-note" placeholder="Add Note"/>
+					</div>
+					<div class="clearFloat"></div>
+					<div>
+						<div class="form-item-icon form1-item-icon"><div class="glyphicon glyphicon-envelope"></div></div>
+						<span style="font-size:20px;">Emails (Optional:separate in ',')</span>
+						<div class="clearFloat"></div>
+						<div class="item-mail-input textarea" placeholder="Enter emails" contenteditable="true"></div>
+						<div style="color: #bbb;">Invites aren't sent at this time - but at the end of the poll setup</div>
+					</div>
+				</div>
+			</div>
+			<div style="height: 80px;"></div>
+			<div class="create-continue-fixed">
+				<div class="create-continue1">
+					<div class="continue-button">Continue</div>
+				</div>
+			</div>
+			<div class="create-continue">
+				<div class="create-continue1">
+					<div class="continue-button">Continue</div>
+				</div>
+			</div>
+		</div>
+		<style>
+			#lanbai-modal #model-frame{
+				width: 400px;
+				margin-left: -200px;	
+			}
+		</style>
+		<div id="lanbai-modal">
+			<div id="model-frame-mask"></div>
+			<div id="model-frame">
+				<div id="modal-header">
+					<div class="modal-btn-cancel">×</div>
+					<div class="modal-title-text">信息询问</div>
+				</div>
+				<div id="modal-container">
+					<div>您的识别码（自定义）：<input class="fill-code"></div>
+					<div>tips:匿名时若不输入，会直接跳转到主页（此号码用于识别该调查的发起者）</div>
+				</div>
+				<div id="modal-footer">
+					<button class="modal-btn-confirm">确定</button>
+					<button class="modal-btn-cancel">取消</button>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../../js/createPoll.js"></script>
+	<script>
+		var relative_path = getRelativePath();
+		var front_site = data_file.get_data(relative_path);
+ 		var urlPollId,passToken;
+ 		var isLogin = false;
+ 		var isEdit = false;
+ 		
+ 		function createPollInit(){
+			$(".continue-button").disable();
+			modalprocess();
+			inputCheck();
+			judgeEdit();
+			judgeLogin();
+
+		}
+ 		
+ 		function judgeLogin(){
+ 			var headerParams = getHeaderParams();
+			$.ajax({
+				type:"get",
+				url:front_site+"/isLogin",
+				async:true,
+				headers:headerParams,
+				dataType:"json",
+				success:function(data){
+					if(data.code == data_protocol.success){
+						isLogin = true;
+						judgeUrl();							//如果登录，直接判断地址参数
+					}else if(data.code == data_protocol.unauthc){
+						isLogin = false;
+						$("#lanbai-modal").fadeIn(300);			//如果匿名，需要先获得标识码
+					}else{
+						alert("联系管理员进行处理！");
+						return false;
+					}
+				}
+			});
+ 		}
+ 		
+ 		function judgeEdit(){
+ 			urlPollId = getRequestParameter().pollId;
+ 			if(typeof urlPollId != undefined && urlPollId != null){
+ 				isEdit = true;
+ 			}else{
+ 				isEdit = false;
+ 			}
+ 		}
+ 		
+ 		function modalprocess(){
+ 			$("#lanbai-modal .modal-btn-cancel").on("click",function(){
+ 				jumpIndex(relative_path);
+ 			})
+ 			$("#lanbai-modal .modal-btn-confirm").on("click",function(){
+ 				passToken = $.trim($("#lanbai-modal .fill-code").val());		//获得标识码
+ 				if(isEmpty(passToken)){
+ 					alert("请输入！");
+ 					return false;
+ 				}
+ 				judgeUrl();
+ 				$("#lanbai-modal").fadeOut(300);
+ 			})
+ 		}
+ 		
+ 		function judgeUrl(){							//利用passToken的有无来判断是否登录
+ 			
+ 			if(isEdit){			//如果有地址参数pollId(利用pollId来判断是否是编辑还是保存)
+ 				console.log("进行编辑");
+ 				
+ 				var pollObj = {
+ 					pollId:urlPollId
+ 				};
+ 				var site = front_site + "/poll/authc/get";
+	 			var headers = getHeaderParams();
+	 			if(!isLogin){		//如果未登录
+	 				site = front_site + "/poll/identifyCode/get";
+	 				headers = '';
+	 				pollObj['pollCreatePwd'] = passToken;
+	 			}
+	 			$.ajax({
+					type:"post",
+					url:site,
+					async:true,
+					headers:headers,
+					data:JSON.stringify(pollObj),
+					contentType:'application/json;charset=utf-8',
+					dataType:"json",
+					success:function(data){
+						if(data.code == data_protocol.success){
+							var pollData = data.data;
+							$(".item-input-title").val(pollData.pollTitle);
+							$(".item-input-location").val(pollData.pollLocation);
+							$(".item-input-note").val(pollData.pollNote);
+						}else{
+							window.location.href = "createPoll.html";
+						}
+					}
+				});
+ 			}else{														//如果没有参数pollId
+ 				console.log("进行创建");
+ 			}
+ 		}
+ 		
+		function inputCheck(){
+			//'input propertychange'实时触发
+			$(".item-input-title").on("input propertychange",function(){
+				var titleValue = $(".item-input-title").val();
+				if(!isEmpty(titleValue)){
+					$(".continue-button").enable();
+				}else{
+					$(".continue-button").disable();
+				}
+			})
+			
+		}
+		function nextPage(){
+
+			$(".continue-button").on("click",function(){
+				var titleValue = $(".item-input-title").val();
+				if(!isEmpty(titleValue)){
+					var pollObj = {};
+					pollObj['pollTitle'] = titleValue;
+					pollObj['pollLocation'] = $(".item-input-location").val();
+					pollObj['pollNote'] = $(".item-input-note").val();
+					pollObj['pollCreateIp'] = returnCitySN.cip;
+					var site = null;				
+					var headers = '';
+					if(!isLogin){//未登录（匿名形式）
+						pollObj['pollCreatePwd'] = passToken;
+						if(isEdit){//编辑
+							pollObj['pollId'] = urlPollId;
+							site = front_site+"/poll/identifyCode/update";
+						}else{											//保存
+							site = front_site+"/poll/identifyCode/save";
+							
+						}
+					}else{												//已登录（用户）
+						headers = getHeaderParams();
+						if(isEdit){//编辑
+							pollObj['pollId'] = urlPollId;
+							site = front_site+"/poll/authc/update";
+						}else{											//保存
+							site = front_site+"/poll/authc/save";
+							
+						}
+					}
+					sessionStorage.setItem("lanbai-poll-invite-emails",$(".item-mail-input").text());//将受邀请的email保存在localStorage里
+					$.ajax({
+						type:"post",
+						url:site,
+						headers:headers,
+						async:false,
+						contentType:'application/json;charset=utf-8',
+						dataType:"json",
+						data:JSON.stringify(pollObj),
+						success:function(data){
+							if(data.code==data_protocol.success){
+								if(!isEmpty(data.data.pollCreatePwd)){
+									sessionStorage.setItem("lanbai-poll-passToken",data.data.pollCreatePwd);
+								}
+								sessionStorage.setItem("lanbai-poll-id",data.data.pollId);
+								if(isEdit){
+									window.location.href="create/pollOptions.html?pollId="+data.data.pollId;
+								}else{
+									window.location.href="create/pollOptions.html";
+								}
+
+							}else if(data.code==data_protocol.unauthc){
+								jumpLogin(relative_path,return_uri);
+							}else if(data.code==data_protocol.intentialError){
+								alert(data.info);	
+							}else{
+								alert(data.info+"(请联系管理员处理)");
+							}
+						},
+						error:function(data){
+							console.log(data)
+						}
+					})
+				}
+	 			
+	 		})
+		}
+		
+		
+		
+		$(function(){
+			
+	 		
+	 		initnav(front_site,relative_path);//初始化导航栏的分类
+	 		continueDivSwitch();//下方“继续div（固定）”隐藏出现
+	 		createPollInit();
+			nextPage();
+	 		
+		})
+		
+	</script>
+
+</html>

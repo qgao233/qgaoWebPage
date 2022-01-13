@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>poll options</title>
+		<link rel="shortcut icon" href="../../../lanbai.ico" /> 
+		
+		<script src="../../../support/jquery/jquery.min.js"></script>
+		<!--<script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>-->
+		<script src="../../../support/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../../../js/common.js"></script>
+		
+		
+		<link href="../../../support/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../../css/module/lanbai-modal.css" rel="stylesheet">
+		
+		<link href="../../../css/common.css" rel="stylesheet">
+		<link href="../../../css/poll/createPoll.css" rel="stylesheet">
+		<link href="../../../css/poll/pollOptions.css" rel="stylesheet">
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div id="header"></div>
+		<div class="pollcreate-container">
+			<div class="create-step">step 2 of 4</div>
+			<div class="create-title">What are the options?</div>
+			<div class="create-navigate">
+				<ul>
+					<li>Month</li>
+					<li>Week</li>
+					<li class="active" data-attr="option-text">Text</li>
+				</ul>
+				<div class="clearFloat"></div>
+			</div>
+			<div class="create-form">
+				<div class="create-items">
+					<div style="display: none;">
+						<iframe src="../options/month.html" width="100%" height="300px"  id="gg" name="gg" frameborder="0" class="iframe123"></iframe>
+					</div>
+					<div style="display: none;">
+						<iframe src="../options/week.html" width="100%" height="300px"  id="gg" name="gg" frameborder="0" class="iframe123"></iframe>
+					</div>
+					<div class="option-text">
+						<ol>
+							<li>
+								<input class="item-input item-input-option" placeholder="Option"/>
+								<div class="form-item-icon form2-item-icon"><div class="glyphicon glyphicon-trash"></div></div>
+								<div class="clearFloat"></div>
+							</li>
+							<li>
+								<input class="item-input item-input-option" placeholder="Add Option"/>
+								<div class="form-item-icon form2-item-icon"><div class="glyphicon glyphicon-trash"></div></div>
+								<div class="clearFloat"></div>
+							</li>
+						</ol>
+						
+					</div>
+				</div>
+			</div>
+			<div style="height: 80px;"></div>
+			<div class="create-continue-fixed">
+				<div class="create-continue1">
+					<div class="back-button">ㄑ</div>
+					<div class="continue-button">Continue</div>
+				</div>
+			</div>
+			<div class="create-continue">
+				<div class="create-continue1">
+					<div class="back-button">ㄑ</div>
+					<div class="continue-button">Continue</div>
+				</div>
+			</div>
+		</div>
+		<style>
+			#lanbai-modal #model-frame{
+				width: 400px;
+				margin-left: -200px;	
+			}
+		</style>
+		<div id="lanbai-modal">
+			<div id="model-frame-mask"></div>
+			<div id="model-frame">
+				<div id="modal-header">
+					<div class="modal-btn-cancel">×</div>
+					<div class="modal-title-text">信息询问</div>
+				</div>
+				<div id="modal-container">
+					<div>您的识别码（自定义）：<input class="fill-code"></div>
+					<div>tips:匿名时若不输入，会直接跳转到主页（此号码用于识别该调查的发起者）</div>
+				</div>
+				<div id="modal-footer">
+					<button class="modal-btn-confirm">确定</button>
+					<button class="modal-btn-cancel">取消</button>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../../../js/createPoll.js"></script>
+	<script src="../../../js/pollOptions.js"></script>
+	<script>
+		var relative_path = getRelativePath();
+		var front_site = data_file.get_data(relative_path);
+		
+		var urlPollId,passToken,sessionPollId;
+ 		var isLogin = false;
+ 		var isEdit = false;
+		
+		function pollOptionsInit(){
+			modalprocess();
+			judgeEdit();
+			judgeLogin();
+		}
+		
+		function judgeLogin(){
+			var headerParams = getHeaderParams();
+			$.ajax({
+				type:"get",
+				url:front_site+"/isLogin",
+				async:true,
+				headers:headerParams,
+				dataType:"json",
+				success:function(data){
+					if(data.code == data_protocol.success){
+						isLogin = true;
+						judgeUrl();							//如果登录，直接判断地址参数
+					}else if(data.code == data_protocol.unauthc){
+						isLogin = false;
+						judgeUrl();			//如果匿名，需要先获得标识码
+					}else{
+						alert("联系管理员进行处理！");
+						return false;
+					}
+				}
+			});
+		}
+		
+		function judgeEdit(){
+			urlPollId = getRequestParameter().pollId;
+ 			if(typeof urlPollId != undefined && urlPollId != null){
+				isEdit = true; 				
+ 			}else{
+ 				isEdit = false;
+ 			}
+		}
+		
+		function judgeUrl(){
+ 			
+ 			if(isEdit){
+ 				console.log("进行编辑");
+ 				if(!isLogin){			//如果没有登录（匿名）
+ 					passToken = sessionStorage.getItem("lanbai-poll-passToken");
+ 					console.log(passToken)
+ 					if(isEmpty(passToken)){
+ 						$("#lanbai-modal").fadeIn(300);	//若为空，则打开模态框，让游客填写标识码用以判断是否有这个调查
+ 						return false;
+ 					}
+					editRequestSite();
+ 				}else{
+					editRequestSite();
+ 				}
+ 				
+ 			}else{
+				console.log("进行保存");
+ 				sessionPollId = sessionStorage.getItem("lanbai-poll-id");
+ 				if(isEmpty(sessionPollId)){
+ 					window.location.href = "../createPoll.html";	//如果为空，则重新创建调查
+ 				}
+ 				if(!isLogin){			//如果没有登录（匿名）
+ 					passToken = sessionStorage.getItem("lanbai-poll-passToken");
+ 				}
+ 			}
+		}
+		
+		function modalprocess(){
+ 			$("#lanbai-modal .modal-btn-cancel").on("click",function(){
+ 				jumpIndex(relative_path);
+ 			})
+ 			$("#lanbai-modal .modal-btn-confirm").on("click",function(){
+ 				passToken = $.trim($("#lanbai-modal .fill-code").val());		//获得标识码
+ 				if(isEmpty(passToken)){
+ 					alert("请输入！");
+ 					return false;
+ 				}
+ 				editRequestSite();
+ 				$("#lanbai-modal").fadeOut(300);
+ 			})
+ 		} 
+		
+		function getOptionLi(value){
+			return '<li>'
+						+'<input class="item-input item-input-option" value="'+value+'" placeholder="Add Option"/>'
+						+'<div class="form-item-icon form2-item-icon"><div class="glyphicon glyphicon-trash"></div></div>'
+						+'<div class="clearFloat"></div>'
+					+'</li>';
+		}
+		
+		//只有编辑用的方法
+		function editRequestSite(){
+			
+			if(isEdit){
+ 				var pollObj = {
+ 					pollId:urlPollId
+ 				};
+ 				var site = front_site + "/poll/authc/get";
+	 			var headers = getHeaderParams();
+	 			if(!isLogin){		//如果未登录
+	 				site = front_site + "/poll/identifyCode/get";
+	 				headers = '';
+	 				pollObj['pollCreatePwd'] = passToken;
+	 			}
+	 			
+	 			$.ajax({
+					type:"post",
+					url:site,
+					async:true,
+					headers:headers,
+					data:JSON.stringify(pollObj),
+					contentType:'application/json;charset=utf-8',
+					dataType:"json",
+					success:function(data){
+						if(data.code == data_protocol.success){
+							var pollData = data.data;
+							var optionsStr = pollData.pollOptions;
+							if(!isEmpty(optionsStr)){
+								var options = optionsStr.split("#");
+								var optionsLen = options.length;
+								var allOptionsLi = new StringBuffer();
+								for(var i = 0;i < optionsLen;i++){
+									allOptionsLi.append(getOptionLi(options[i]));
+								}
+								$(".option-text ol").prepend(allOptionsLi.toString());
+							}
+							
+						}else{
+							window.location.href = "../createPoll.html";
+						}
+					}
+				});
+			}
+			
+		}
+		
+		function backPage(){
+			$(".back-button").on("click",function(){
+				if(isEdit){
+					window.location.href="../createPoll.html?pollId="+urlPollId;
+				}else{
+					window.location.href="../createPoll.html?pollId="+sessionPollId;
+				}
+				
+			})
+		}
+		function nextPage(){
+			$(".continue-button").disable();
+			$(".continue-button").on("click",function(){
+				var $itemInputOptions = $(".item-input-option");
+				var options = [];
+				var count = 0;
+				var tmpOpt;
+				for(var i = 0;i<$itemInputOptions.length;i++){
+					tmpOpt = $itemInputOptions.eq(i).val();
+					if(!isEmpty(tmpOpt)){
+						options[count++] = tmpOpt;
+					}
+				}
+				var optionsStr = options.join('#');
+				var pollObj = {}
+				pollObj['pollId'] = localStorage.getItem("lanbai-poll-id");
+				pollObj['pollOptions'] = optionsStr;
+				var site = null;				
+				var headers = '';
+				if(!isLogin){//未登录（匿名形式）
+					pollObj['pollCreatePwd'] = passToken;
+					if(isEdit){//编辑
+						pollObj['pollId'] = urlPollId;				//编辑
+					}else{											
+						pollObj['pollId'] = sessionPollId;			//保存更新
+					}
+					site = front_site+"/poll/identifyCode/updateOptions";
+				}else{												//已登录（用户）
+					headers = getHeaderParams();
+					if(isEdit){//编辑
+						pollObj['pollId'] = urlPollId;				//编辑
+					}else{											
+						pollObj['pollId'] = sessionPollId;			//保存更新
+					}
+					site = front_site+"/poll/authc/updateOptions";
+				}
+//				console.log(optionsStr);
+				$.ajax({
+					type:"post",
+					url:site,
+					headers:headers,
+					async:false,
+					contentType:'application/json;charset=utf-8',
+					dataType:"json",
+					data:JSON.stringify(pollObj),
+					success:function(data){
+						if(data.code==data_protocol.success){
+							if(!isEmpty(data.data.pollCreatePwd)){
+								sessionStorage.setItem("lanbai-poll-passToken",data.data.pollCreatePwd);
+							}
+							sessionStorage.setItem("lanbai-poll-id",data.data.pollId);
+							if(isEdit){
+								window.location.href="./pollSettings.html?pollId="+data.data.pollId;
+							}else{
+								window.location.href="./pollSettings.html";
+							}
+						}else if(data.code==data_protocol.unauthc){
+							jumpLogin(relative_path,return_uri);
+						}else if(data.code==data_protocol.intentialError){
+							alert(data.info);	
+						}else{
+							alert(data.info+"(请联系管理员处理)");
+						}
+					},
+					error:function(data){
+						console.log(data)
+					}
+				});
+	 		})
+		}
+		$(function(){
+			
+	 		
+	 		initnav(front_site,relative_path);//初始化导航栏的分类
+	 		continueDivSwitch();//下方“继续div（固定）”隐藏出现
+	 		switchOptions();
+	 		addInputItem();
+	 		backPage();
+	 		nextPage();
+	 		pollOptionsInit();
+		})
+		
+	</script>
+
+</html>

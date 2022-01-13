@@ -1,0 +1,220 @@
+/*poll-modal*/
+
+.data-modal{
+    width: 70%;
+    height: 590px;
+    border-radius: 5px;
+    position: fixed;
+    left: 50%;
+    top: 67px;
+    margin-left: -35%;
+    background: #fff;
+    box-shadow: 0px 0px 10px 1px #aaa;
+    overflow: auto;
+    display: none;
+    /*display: block;*/
+}
+.modal-title{
+	text-align: left;
+	
+}
+.modal-title>div{
+}
+.modal-title .modal-remove{
+	float: right;
+	padding: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.modal-title .modal-remove:hover{
+	color: orangered;
+}
+.modal-title .title-tip{
+	padding: 10px 20px;
+}
+.modal-title .title-tip>div{
+	display: inline-block;
+}
+.modal-title .title-tip .poll-title{
+	font-size: 30px;
+	font-weight: bold;
+}
+.modal-body{
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+	overflow: auto;
+	height: 475px;
+}
+.modal-body>div{
+	display: -webkit-flex; /* Safari */
+	display: flex;
+	justify-content: space-around;
+}
+.modal-body .mychart-show{
+	width: 500px;
+	height: 400px;
+}
+.modal-body .chart-option .option-select{
+	position: relative;
+    border-radius: 5px;
+    border: 1px solid #34a4e6;
+    transition: box-shadow 0.25s ease;
+    color: #34a4e6;
+    width: 100px;
+}
+.modal-body .chart-option .option-select:hover{
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+.modal-body .chart-option .option-select .option-arrow{
+	position: absolute;
+	width: 0;
+	height: 0;
+	border: 5px solid transparent;
+	border-bottom-color: #34a4e6;
+	top: 5px;
+	right: 10px;
+	cursor: pointer;
+	transform-origin:50% 75%;
+	z-index: -2;
+}
+.modal-body .chart-option .option-select select{
+	cursor: pointer;
+	padding: 5px 10px;
+	width: 100%;
+	border: none;
+	background: transparent;
+	background-image: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+.modal-body .chart-option .option-select select:focus{
+	outline: none;
+}
+.modal-foot{
+	display: flex;
+	justify-content: center;
+	padding: 10px;
+}
+.modal-foot .export-excel{
+	padding: 5px 10px;
+    border-radius: 5px;
+    background: #49f13f;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+.modal-foot .export-excel:hover{
+    background: #49f13faa;
+}
+
+/*poll-modal>poll-detail*/
+.poll-detail{
+	text-align: left;
+    font-size: 15px;
+	font-family: initial;
+}
+.poll-detail>div{
+	padding: 5px 0;
+}
+.poll-detail>div>span{
+	padding: 5px;
+	width: 300px;
+	display: inline-block;
+	vertical-align: top;
+	white-space:normal;
+	word-break:break-all;
+	overflow:auto;
+}
+.poll-detail .poll-deadline>span{
+	width: auto;
+}
+.poll-detail>div>span:first-child{
+	width: 90px;
+    text-align: right;
+    font-weight: bold;
+}
+.poll-detail .deadline-input,.poll-detail .deadline-change.trigger{
+	display: none;
+}
+.poll-detail .poll-deadline .deadline-input{
+	padding: 0;
+	width: 300px;
+	overflow: visible;
+}
+.poll-detail .poll-deadline .deadline-input>input,.poll-detail .poll-deadline .deadline-input>div{
+	display: inline-block;
+}
+.poll-detail .poll-deadline input{
+	outline: none;
+    color: #888;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+}
+.poll-detail .deadline-change{
+	outline: none;
+    cursor: pointer;
+    color: #888;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+}
+.poll-detail .deadline-change.confirm{
+	color: #fff;
+    background: #34a4e6;
+    border: none;
+    
+}
+
+
+/*poll-modal>poll-table*/
+.complete-table>table{
+	border-collapse:collapse;
+}
+.complete-table>table td{
+	border: 1px solid #d4dade;
+	padding: 20px;
+}
+.complete-table>table thead tr.partIn-option td.act{
+	background: #a6e840;
+}
+.complete-table>table thead tr.partIn-option td .check-option-box{
+	background: #a6e840;
+	color: #FFF;
+}
+.complete-table>table thead tr.partIn-option td .check-option-box span{
+	display: block;
+}
+.complete-table>table thead tr.partIn-option td:first-child{
+	background: #fff;
+}
+.partIn-people td:first-child{
+	position: relative;
+}
+.partIn-people td:first-child .no-suit-tip{
+    position: absolute;
+    padding: 20px;
+    border-radius: 50%;
+    border: 1px solid coral;
+    background: coral;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    top: -100px;
+    left: -50px;
+    width: 200px;
+    display: none;
+}
+.partIn-people td:first-child .no-suit-tip::after{
+	content: '';
+	display: block;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top-color: coral;
+    position: absolute;
+    top: 1;
+    bottom: -20px;
+    left: 90px;
+}

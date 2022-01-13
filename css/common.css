@@ -1,0 +1,477 @@
+*{
+	margin:0;
+	padding: 0;
+	font-family: helvetica neue,arial,hiragino sans gb,stheiti,wenquanyi micro hei,\5FAE\8F6F\96C5\9ED1,\5B8B\4F53,sans-serif;
+}
+
+/**************************滚动条********************************************/
+
+::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 10px;     /*宽高分别对应竖横滚动条的尺寸*/
+    height: 5px;
+}
+::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 10px;
+     -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: #ccc;
+}
+::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    background: #eee5;
+}
+
+/**********************************************************************/
+
+.qgao-section .qgao-container{
+	margin: 0 auto;
+	max-width: 80%;
+}
+
+
+ol, ul{
+	margin: 0;
+	padding: 0;
+    user-select: none;
+}
+
+ol li, ul li{
+	list-style-type:none;  
+}
+
+.clearfloat{
+	clear: both !important;
+}
+
+input,textarea{
+	outline: none;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none; /* 去除默认的下划线 */
+	outline: none;	/* 去除旧版浏览器的点击后的外虚线框 */
+	color: #000;	/* 去除默认的颜色和点击后变化的颜色 */ 
+}
+
+/*********************************common-header*************************************/
+#common-header{
+	border-bottom: 2px solid #ececec;
+	width: 100%;
+    z-index: 100;
+    background-color: #fff;
+    top: 0px;
+}
+
+#common-header .header-container{
+	max-width: 100%;
+}
+
+#common-header .header-container>div{
+	padding: 5px;
+}
+
+#common-header .header-container>div{
+	float: left;
+	margin-right: 10px;
+}
+
+#common-header .qgao-version{
+	display: inline-block;
+	line-height: 33px;
+	text-align: center;
+}
+#common-header li{
+	float: left;
+	position: relative;
+	
+	cursor: pointer;
+	
+	
+}
+
+#common-header li>a{
+	display: inline-block;
+	line-height: 33px;
+	text-align: center;
+	padding: 0 15px;
+	transition:font-size 0.2s;
+	-moz-transition:font-size 0.2s; /* Firefox 4 */
+	-webkit-transition:font-size 0.2s; /* Safari and Chrome */
+	-o-transition:font-size 0.2s; /* Opera */
+}
+
+#common-header li.active>a{
+	border-radius: 5px;
+	background-color: #3898ec;
+	color: #fff;
+}
+
+#common-header li.active>a:hover{
+	color: #f4f4f4;
+}
+
+#common-header li>a:hover{
+	color: #5a5a5a;
+	font-size: 18px;
+}
+#common-header li>a:active{
+	color: #000;
+}
+
+#common-header .search .search-input,#common-header .search .search-button{
+	float: left;
+	line-height: 20px;
+	padding: 5px 5px;
+}
+
+#common-header .search .search-input{
+	border: 1px solid #0004;
+	border-radius: 5px 0 0 5px;
+	width: 150px;
+}
+
+#common-header .search .search-input:hover{
+	border: 1px solid #3898ec;
+}
+
+#common-header .search .search-input:focus{
+	border: 1px solid #3898ec;
+}
+
+#common-header .search .search-button{
+	color: #fff;
+	background-color: #3898ec;
+	font-size: 15px;
+	border: 1px solid #3898ec;
+    border-left: 0px;
+    padding: 5px 10px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    user-select: none;
+}
+#common-header .search .search-button>span{
+	font-size: inherit;
+}
+#common-header .search .search-button:hover{
+	color: #f4f4f4;
+}
+#common-header .search .search-button:active{
+	background-color: #3c8cd2;
+	border-color: #3c8cd2;
+}
+
+#common-header .login{
+	float: right !important;
+}
+
+#common-header .login .login-text{
+	line-height: 33px;
+	text-align: center;
+}
+
+#common-header .navigator-ul-login li>div{
+	position: absolute;
+}
+
+#common-header .navigator-ul-login .user-photo{
+	width: 33px;
+    height: 33px;
+}
+
+#common-header .navigator-ul-login img{
+	width: 33px;
+	height: 33px;
+	vertical-align: middle;
+	border-radius: 50%;
+	position: absolute;
+	z-index: 102;
+}
+
+#common-header .navigator-ul-login .bubble{
+    background-color: #ff6194;
+    color: #fff;
+    font-size: 1px;
+    border-radius: 50%;
+    padding: 1px;
+    line-height: 15px;
+    width: 15px;
+    text-align: center;
+    right: 0;
+    top: 0;
+}
+
+/*************下拉框************/
+
+#common-header .drop-down-box{
+    background: #fff;
+    box-shadow: 0 1px 15px 1px #e9e9e9;
+    top: 33px;
+    border-radius: 5px;
+    z-index: 101;
+}
+
+
+/*user-photo*/
+#common-header .user-photo .drop-down-box{
+	font-size: 14px !important;
+	overflow: hidden;
+    padding-top: 40px;
+	/*为了保证任意改变宽度，也能最大限度居中*/
+	--width: 250;
+	width: calc(var(--width) * 1px);
+	left: calc(var(--width) * -0.43px);
+}
+/*user-msg*/
+#common-header .user-msg .drop-down-box{
+	font-size: 14px !important;
+    overflow: hidden;
+    /*为了保证任意改变宽度，也能最大限度居中*/
+    --width: 150;
+    width: calc(var(--width) * 1px);
+    left: calc(var(--width) * -0.30px);
+}
+/*user-activity*/
+#common-header .user-activity .drop-down-box{
+	font-size: 14px !important;
+    overflow: hidden;
+    /*为了保证任意改变宽度，也能最大限度居中*/
+    --width: 300;
+    width: calc(var(--width) * 1px);
+    left: calc(var(--width) * -0.40px);
+}
+/*user-store*/
+#common-header .user-store .drop-down-box{
+	font-size: 14px !important;
+    overflow: hidden;
+    /*为了保证任意改变宽度，也能最大限度居中*/
+    --width: 420;
+    width: calc(var(--width) * 1px);
+    left: calc(var(--width) * -0.70px);
+}
+/*user-create*/
+#common-header .user-create .drop-down-box{
+	font-size: 14px !important;
+    overflow: hidden;
+    right: 0;
+    width: -webkit-fill-available;
+}
+
+#common-header .user-photo .drop-down-box .nick-name{
+	margin: 0 auto;
+	max-width: fit-content;
+	font-size: 18px;
+}
+
+#common-header .user-photo .drop-down-box .user-exp-content{
+	padding: 5px 10px;
+	border-bottom: 1px solid #f4f4f4;
+}
+
+#common-header .user-photo .drop-down-box .user-exp-show>div{
+	display: inline-block;
+	line-height: 33px;
+}
+
+#common-header .user-photo .drop-down-box .user-exp{
+	float: right;
+	color: #0007;
+}
+
+#common-header .user-photo .drop-down-box .exp-bar-outer{
+	background-color: #ececec;
+	border-radius: 100px;
+    overflow: hidden;
+}
+
+#common-header .user-photo .drop-down-box .exp-bar-inner{
+	height: 5px;
+	width: 80%;
+	background-color: #F3CB85;
+}
+
+#common-header .user-photo .drop-down-box .user-point{
+	padding: 5px 0;
+}
+#common-header .user-photo .drop-down-box .user-point>span{
+	font-size: 14px !important;
+}
+
+#common-header .user-photo .drop-down-box li>a,
+#common-header .user-msg .drop-down-box li>a,
+#common-header .user-activity .drop-down-box li>a,
+#common-header .user-store .drop-down-box li>a,
+#common-header .user-create .drop-down-box li>a{
+	width: 100%;
+	text-align: left;
+	box-sizing: border-box;
+	padding: 5px 10px;
+}
+
+#common-header .user-photo .drop-down-box li>a:hover,
+#common-header .user-msg .drop-down-box li>a:hover,
+#common-header .user-activity .drop-down-box li>a:hover,
+#common-header .user-store .drop-down-box li>a:hover,
+#common-header .user-create .drop-down-box li>a:hover{
+	background-color: #f4f4f4;
+	font-size: 1em !important;
+}
+
+#common-header .drop-down-box li{
+	float: none;
+}
+
+#common-header .user-activity .drop-down-box .activity-navigator{
+	border-bottom: 1px solid #f4f4f4;
+	padding: 5px 10px;
+}
+
+#common-header .user-activity .drop-down-box .activity-navigator li{
+	float: left;
+	padding: 2px 10px;
+	color: #0007;
+}
+#common-header .user-activity .drop-down-box .activity-navigator li:hover:not(li.active){
+	color: #3898ec;
+}
+
+#common-header .user-activity .drop-down-box .activity-navigator li.active{
+	color: #fff;
+	background-color: #3898ec;
+	border-radius: 100px;
+}
+
+
+
+#common-header .drop-down-box .item-list{
+	max-height: 400px;
+	overflow: auto;
+}
+#common-header .drop-down-box .item-list a>div{
+	float: left;
+}
+#common-header .drop-down-box .item-list a .user-img{
+	width: 20%;
+	text-align: center;
+}
+#common-header .drop-down-box .item-list a .user-img img{
+	position: static;
+}
+#common-header .drop-down-box .item-list a .user-item{
+	width: 80%;
+	line-height: 1.2em;
+}
+#common-header .drop-down-box .item-list a .user-item .item-time{
+	font-size: 0.8em;
+	color: #0007;
+}
+
+#common-header .user-store .drop-down-box>div{
+	float: left;
+	padding: 10px 0;
+	max-height: 400px;
+    overflow: auto;
+	
+}
+#common-header .user-store .drop-down-box .store-category{
+	width: 30%;
+	border-right: 1px solid #f4f4f4;
+    box-sizing: border-box;
+    height: 400px;
+}
+#common-header .user-store .drop-down-box .store-category li{
+	padding: 10px 10px;
+    line-height: 33px;
+}
+#common-header .user-store .drop-down-box .store-category li.active{
+	background-color: #f4f4f4;
+}
+#common-header .user-store .drop-down-box .store-category li span{
+	float: right;
+	color: #0007;
+}
+#common-header .user-store .drop-down-box .store-category li:hover{
+	background-color: #f4f4f4;
+}
+
+#common-header .user-store .drop-down-box .store-list{
+	width: 70%;
+}
+
+#common-header .user-create .drop-down-box .create-list li a{
+	text-align: center;
+	padding: 5px 10px;
+}
+#common-header .user-create .drop-down-box .create-list li a:hover{
+	background: none;
+}
+#common-header .user-create .drop-down-box .create-list li a:hover span{
+	background-color: #ececec;
+}
+
+#common-header .user-create .drop-down-box .create-list li a>div{
+	line-height: 33px;
+}
+#common-header .user-create .drop-down-box .create-list li a span{
+	background-color: #f4f4f4;
+	border-radius: 50%;
+	width: 33px;
+	height: 33px;
+	font-size: 20px;
+	display: inline-block;
+}
+
+/*********************************common-footer*************************************/
+
+#common-footer{
+	border-top: 2px solid #f4f4f4;
+    margin-top: 50px;
+}
+
+#common-footer .qgao-container{
+	padding: 70px 0;
+    max-width: fit-content;
+    color: #0007;
+}
+
+/*********************************announcement*************************************/
+
+.announcement{
+	font-size: 20px;
+	margin: 10px 0;
+}
+
+.announcement .announcement-icon{
+	font-size: 20px !important;
+}
+
+.announcement .announcement-container{
+	overflow: hidden;
+}
+.announcement .announcement-container>div{
+	float: left;
+}
+.announcement .announcement-container .announcement-title{
+	color: #ff2825;
+}
+.announcement .announcement-container .announcement-content{
+	color: #5a5a5a;
+}
+
+/*****************************分页****************************/
+
+.common-page-list{
+	padding: 10px 0;
+}
+
+/****************************加载icon*************************/
+.load-icon{
+	margin: 0 auto;
+	max-width: fit-content;
+	padding: 20px 0;
+}
+.load-icon>span{
+	font-size: 25px;
+	display: inline-block;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>demo_page</title>
+		<script src="../../jquery/jquery.min.js"></script>
+		<script src="js/page.js"></script>
+		<link href="css/page.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="common-page-list comment" data-class-name=".comment" data-total-counts="30">
+			<div>
+				<div class="prev-page" style="display: none;">上一页</div>
+				<ul>
+					<li class="active">1</li>
+					<li>2</li>
+				</ul>
+				<div class="next-page">下一页</div>
+			</div>
+		</div>
+		
+		<div class="common-page-list reply" data-class-name=".reply" data-total-counts="45">
+			<div>
+				<div class="prev-page" style="display: none;">上一页</div>
+				<ul>
+					<li class="active">1</li>
+					<li>2</li>
+				</ul>
+				<div class="next-page">下一页</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		function loadContentOfPage(currPage){}
+		
+		window.onload = function(){
+			//$elemInPage只要是.common-page-list内部随便一个元素就行
+			$elemInPage = $(".common-page-list.reply .prev-page")
+			pageMain();
+			
+			$elemInPage = $(".common-page-list.comment .prev-page")
+			pageMain();
+		}
+	</script>
+</html>

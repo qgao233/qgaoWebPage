@@ -1,0 +1,373 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	position: relative;
+	text-align: center;
+}
+
+#main-page-head{
+    border: 1px solid #e9e9e9;
+    box-shadow: -1px -1px 4px #e9e9e9;
+    background: #fff;
+    height: 120px;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+#main-page-head .user-msg{
+	text-align: left;
+}
+#main-page-head>div{
+	float: left;
+	padding: 0 10px;
+}
+
+#main-page-head>div.user-msg-mod{
+	float: right;
+}
+
+#main-page-head img{
+	background: rgba(0,0,0,0.1);
+	width: 100px;
+	height: 100px;
+	border-radius: 10px;
+}
+
+#main-page-head .user-nick{
+	color: black;
+	font-size: 30px;
+	font-weight: bold;
+	font-family:"微软雅黑";
+}
+
+/*头部以下*/
+
+
+.article-manage-body{
+    border: 1px solid #e9e9e9;
+    box-shadow: -1px -1px 4px #e9e9e9;
+    background: white;
+    height: auto;
+    border-radius: 5px;
+}
+
+.body-left,.body-right{
+	float: left;
+}
+.body-left{
+	width: 13%;
+	border-right: 1px solid #e9e9e9;
+}
+ul{
+	list-style-type:none;  
+}
+.lanbai-left-nav ul li{
+    font-size: 15px;
+    text-align: center;
+    padding: 15px 0;
+    /*background: #29B6F6;*/
+	/*color: white;*/
+	cursor: pointer;
+	
+	-webkit-transition: all .5s; 
+    -moz-transition: all .5s; 
+    -ms-transition: all .5s; 
+    -o-transition: all .5s; 
+    transition: all .5s;
+}
+.lanbai-left-nav ul li>span{
+	position:relative;
+	top:2px;
+	padding-right: 10px;
+}
+.lanbai-left-nav ul li.active{
+    background: #50A8FF;
+	color: white;
+}
+.lanbai-left-nav ul li.active:hover{
+    background: #50A8FF;
+	color: white;
+}
+
+.lanbai-left-nav ul li:hover{
+	color: #4fc3f7;
+}
+.lanbai-left-nav ul li:active{
+	background: #81d4fa;
+	color: white;
+}
+.body-right{
+	width: 87%;
+}
+
+.body-right>div{
+	display: none;
+}
+
+
+.lanbai-right-nav ul{	
+	border-bottom: 1px solid #e9e9e9;
+}
+
+.lanbai-right-nav ul li{
+	float: left;
+	color: #999;
+    padding: 5px 15px;
+    -webkit-transition: all .5s; 
+    -moz-transition: all .5s; 
+    -ms-transition: all .5s; 
+    -o-transition: all .5s; 
+    transition: all .5s;
+}
+
+.lanbai-right-nav ul li.active{
+	border-bottom: 3px solid #29B6F6;
+	color: #29B6F6;
+}
+
+.lanbai-right-nav ul li:hover{
+	cursor: pointer;
+	color: #29B6F6;
+}
+
+
+/*----------------------------------------文章管理------------------------------------------**/
+#lanbai-article .body ul{
+	border-bottom: 1px dotted #ddd;
+	margin-left: 20px;
+	height: 65px;
+}
+#lanbai-article .body ul h1{
+	font-size: 18px;
+    color: #4f4f4f;
+    word-wrap: break-word;
+    word-break: break-all;
+    cursor: pointer;
+    text-align: left;
+}
+#lanbai-article .body ul li{
+	float: left;
+	margin-left: 26px;
+    color: #999;
+    font-size: 12px;
+}
+#lanbai-article .body ul p{
+	float: right;
+	margin-right: 20px;
+
+}
+
+#lanbai-article .body ul p span{
+	margin: 5px;
+	cursor: pointer;
+
+}
+
+
+#lanbai-article div.body{
+	display: none;
+	padding-left: 25px;
+}
+/*----------------------------------------评论管理------------------------------------------**/
+
+#plgl .body ul li{
+	margin-top: 20px;
+	border-bottom: 1px dotted #ddd;
+	margin-left: 20px;
+	height: 65px;
+	position: relative;
+	overflow: hidden;
+}
+#plgl .body ul li p{
+	float: left;
+	font-size: 14px;
+}
+#plgl .body ul li .time{
+	color: #999;
+}
+#plgl .body ul li .title{
+	color: #349EDF;
+	cursor: pointer;
+}
+#plgl .body ul li .coment{
+	width: 100%;
+	line-height: 29px;
+	font-size: 16px;
+	color: #4F4F4F;
+}
+/*----------------------------------------个人分类管理------------------------------------------**/
+#grflgl{
+	float: left;
+	width: 100%;
+	display: none;
+}
+#grflgl .newType{
+	margin-left: 20px;
+}
+#grflgl .nav{
+	margin-top: 20px;
+	border-bottom: 1px solid #E9E9E9;
+}
+#grflgl .nav p{
+	line-height: 30px;
+    color: #999999;
+}
+#grflgl .leibie{
+	float: left;
+	margin-left: 27px;
+}
+.lb{
+	float: left;
+	margin-left: 27px;
+}
+#grflgl .caozuo{
+	float: right;
+	margin-right: 40px;
+}
+
+.cz{
+	font-size: 13px;
+	float:right;
+	margin-right: 23px;
+}
+.cz p{
+	float: left;
+	cursor: pointer;
+}
+.update{
+	color: #349EDF;;
+	border-right: 1px solid #E9E9E9;
+	padding-right: 8px;
+}
+.delete{
+	color: #CA0C16;
+}
+#grflgl .number{
+	float: right;
+	margin-right: 40px;
+}
+.nb{
+	float: right;
+	margin-right: 40px;
+}
+#grflgl .body ul li{
+	font-size: 14px;
+    color: #4F4F4F;
+    line-height: 22px;
+    padding: 24px 0;
+    border-bottom: 1px dotted #DDDDDD;
+    padding-bottom: 40px
+}
+/*----------------------------------------博客设置------------------------------------------**/
+#bksz{
+	display: none;
+}
+#bksz ul{
+	margin-top: 110px;
+}
+#bksz ul li{
+	width: 80%;
+	height: 60px;
+	padding-left: 20px;
+}
+#bksz ul li p{
+	margin-top: 8px;
+	float: left;
+	margin-left: 10px;
+}
+#bksz ul li input{
+	width: 60%;
+	float: left;
+}
+#bksz .save{
+	cursor: pointer;
+	border: 1px solid #31b0d5;
+	font-weight: 400;
+    text-align: center;
+    width: 90px;
+    height: 43px;
+    padding:12px 6px;
+    background: white;
+    border-radius: 5px;
+    margin-left: 30px;
+}
+#bksz .save:hover{
+	background: #31b0d5;
+    color: white;
+}
+
+/*----------------------------------------账号设置------------------------------------------**/
+#grsz{
+	float: left;
+	width: 100%;
+	display: none;
+}
+#grsz .nav ul{	
+	margin-top: 20px;
+	border-bottom: 1px solid #e9e9e9;
+	height: 30px;
+}
+#grsz .body ul{
+	margin-top: 20px;
+}
+#grsz .body ul li{
+	width: 80%;
+	height: 60px;
+	padding-left: 20px;
+}
+#grsz  ul li p{
+	margin-top: 8px;
+	float: left;
+	margin-left: 10px;
+}
+#grsz .body ul li input{
+	width: 60%;
+	float: left;
+}
+#grsz .save{
+	cursor: pointer;
+	border: 1px solid #31b0d5;
+	font-weight: 400;
+    text-align: center;
+    width: 90px;
+    height: 43px;
+    padding:12px 6px;
+    background: white;
+    border-radius: 5px;
+    margin-left: 30px;
+}
+#grsz .save:hover{
+	background: #31b0d5;
+    color: white;
+}
+#grsz .body2{
+	display: none;
+}
+#grsz .body2 img{
+	width: 30%;
+	height: auto;
+	margin-left: 20px;
+}
+#grsz .body2 ul li{
+	height: 60px;
+}
+#grsz .body2 ul li p{
+	width: 50px;
+	text-align: right;
+}
+#grsz .body2 ul li input{
+	width: 60%;
+	float: left;
+}
+
+
+.article-empty{
+	text-align: center;
+    font-size: 30px;
+    height: 200px;
+    line-height: 200px;
+}
+

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>写文章--蓝白</title>
+		<link rel="shortcut icon" href="../../qgao.ico" /> 
+		
+		<link href="../../support/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../support/wangEditor2/css/wangEditor.min.css" rel="stylesheet">
+		
+		<script src="../../support/jquery/jquery.min.js"></script>
+		
+		<script src="../../js/commonTools.js"></script>
+		<script src="../../js/commonService.js"></script>
+		<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+
+		<link href="../../support/iconfont-ali/iconfont.css" rel="stylesheet">
+
+		<link href="../../css/common.css" rel="stylesheet">
+		<link href="../../css/article/writeArticle.css" rel="stylesheet">
+		
+		<script src="../../support/wangEditor2/js/wangEditor.min.js" type="text/javascript" ></script>
+		<script src="../../js/article/writeArticle.js"></script>
+		<script>
+			$(document).ready(function() {
+	 			$("#footer").load("../../common/footer.html");
+	 			
+	 			var user_id = getRequestParameter().user_id;
+	 			if(!user_id){
+	 				user_id = 1521864246651;
+	 			}
+	 			relative_path = getRelativePath();
+				initCommonHeader();
+				initCommonFooter();
+				checkCommonHeader();
+				
+				
+				var front_site = data_file.get_data(relative_path);
+				initPrivateCategory(front_site,user_id,relative_path);//初始化私有文章分类
+				initPublicCategory(front_site);//初始化公有文章分类
+				mylistener();
+				prvTypeItemEvent();//个人分类条目编辑和删除事件
+				prvTypeAddClick();//个人分类新增事件
+				prvTypeAddConfirm();//个人分类新增确认事件
+				
+				
+				var article_id = getRequestParameter().article_id;
+				var user_id = getRequestParameter().user_id;
+				
+				var site = '';
+				if(!!article_id){
+					site = front_site+"/article/get/"+article_id;
+				}
+				if(!!user_id){
+					site = front_site+"/article/user/get/"+article_id;
+				}
+				if(!!article_id){
+					
+					$(".btn-submit").empty();
+					var btn_tag = '<button type="button" class="btn btn-default btn-free btn-update" >更新</button>';
+					$(".btn-submit").append(btn_tag);
+					$.ajax({
+						type:"get",
+						url:site,
+						async:true,
+						headers:getHeaderParams(),
+						data:"userId="+user_id,
+						dataType:"json",
+						success:function(data){
+							if(data.code==0){
+								var articleInfo = data.data;
+								//类型
+								$(".article-type-string").html(articleInfo.articleTypeString);
+								$(".article-type-hidden").val(articleInfo.articleTypeString);
+								//标题
+								$("#artic-title").val(articleInfo.articleTitle);
+								//内容
+								articleEditor.$txt.html(articleInfo.articleContent);
+								//标签
+								var article_tag = articleInfo.articleTag.split(",");
+								for(var i = 0;i<article_tag.length;i++){
+									var tag = '<input type="text" value="'+article_tag[i]+'" name="article_tag" class="form-control " maxlength="5" size="1" onkeyup="changeInput(this)" style="text-align: center;padding: 6px 7px;">'+
+									'<span class="glyphicon glyphicon-remove" style="margin-top: -7px;margin-left: -9px;font-size: 12px;margin-right: 8px;color: red;" onclick="del(this)"></span>'
+									$(".article-tag").prepend(tag);
+								}
+								//私有分类
+								var private_sort_id_name = articleInfo.privateSortIdName.split(",")
+								console.log(private_sort_id_name)
+								var private_sort_length = private_sort_id_name.length;
+								for(var i = 0;i<private_sort_length;i++){
+									$(".prv-category label").each(function(){
+										var $input = $(this).children("input")
+										if(private_sort_id_name[i].split("#")[0]==$input.val()){
+											$input.attr("checked","checked");
+											return false;
+										}
+									})
+								}
+								//公有分类
+								var sort_id_name = articleInfo.sortIdName.split(",");
+								var sort_length = sort_id_name.length;
+								for(var i = 0;i<sort_length;i++){
+									$(".pub-category label").each(function(){
+										var $input = $(this).children("input")
+										if(sort_id_name[i].split("#")[0]==$input.val()){
+											$input.attr("checked","checked");
+											return false;
+										}
+									})
+								}
+								
+							}
+						}
+					});
+					$(".btn-update").on("click",function(){
+						updateForm(front_site,relative_path,user_id,article_id)
+					})
+					
+				}else{
+					$(".btn-publish").on("click",function(){
+		 				publishForm(front_site,relative_path,user_id);
+		 			})
+					$(".btn-save").on("click",function(){
+		 				saveForm(front_site,relative_path,user_id);
+		 			})
+					$(".btn-giveup").on("click",function(){
+		 				delForm(relative_path);
+		 			})
+				}
+				
+				
+			})
+			
+			
+		</script>
+		<style>
+			.navbar-fixed-top {
+				position: inherit;
+			}
+			
+			#artic-title{
+				margin-left: 44px;
+			}
+			.article-lable {
+				position: relative;
+				height: 69px;
+				width: 800px;
+			}
+			
+			.article-lable input {
+				min-width: 50px;
+				float: left;
+				margin-right: 10px;
+				width: auto;
+			}
+			
+			.article-lable span {
+				float: left;
+				margin-top: 7px;
+				cursor: pointer;
+			}
+			.container-left{
+				height: auto;
+				width:1100px;
+				margin:0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="common-header" class="qgao-section"></div>
+		<div class="qgao-section">
+			<div class="qgao-container">
+				<div class="container-main" style="margin-top: -20px;">
+					<form name="example" method="post" action="" onsubmit="return false;">
+							<div>
+								<div class="page-header title-blog">
+									<h4>文章标题</h4>
+								</div>
+								<div>
+									<div class="input-group-btn" style="float: left">
+										<button type="button" class="btn btn-default dropdown-toggle article-type-string" data-toggle="dropdown">类型
+											<span class="caret"></span>
+				                        </button>
+										<ul class="dropdown-menu sub-dropdown-menu">
+											<li>
+												<a href="javacript:void(0);" id="yc">原创</a>
+											</li>
+											<li>
+												<a href="javacript:void(0);" id="zz">转载</a>
+											</li>
+											<li>
+												<a href="javacript:void(0);" id="fy">翻译</a>
+											</li>
+										</ul>
+									</div>
+									<input class="article-type-hidden" name="article_type" id="yczzfy" type="hidden"/>
+									<input class="form-control" name="article_title" type="text" id="artic-title" style="float: left;width: 94%;">
+								</div>
+							</div>
+		
+							<div style="margin-top: 90px;">
+								<div class="page-header title-blog" >
+									<h4>文章内容</h4>
+								</div>
+								<div>
+									<div class="article-content article-write" id="article-content" style="height:550px;"></div>
+									<script type="text/javascript">
+								        var articleEditor = new wangEditor('article-content')
+								        var front_site = get_site("../../data/data.json");
+								        initWangEditor2(articleEditor,front_site,"../../");
+								        articleEditor.create()
+								    </script>
+								</div>
+							</div>
+							<div style="margin-top: 55px;">
+								<div class="page-header title-blog">
+									<h4>文章标签<small>（添加Tag，你的内容能被更多人看到）</small></h4>
+								</div>
+								<div class="article-lable" style="margin-top: -40px; margin-left: -10px;">
+									<div class="form-group" style="margin-top: 60px;">
+										<div class="col-lg-12 article-tag">
+											<!--一个完整的:开始-->
+											<!--<input type="text" name="article_tag" class="form-control " maxlength="5" size="1" onkeyup="changeInput(this)" style="text-align: center;padding: 6px 7px;">
+											<span class="glyphicon glyphicon-remove" style="margin-top: -7px;margin-left: -9px;font-size: 12px;margin-right: 8px;color: red;" onclick="del(this)"></span>-->
+											<!--结束-->
+											<span class="glyphicon glyphicon-plus"></span>
+											<p class="help-block">(最多5个标签)</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="addCatalogBox">
+								<div class="page-header title-blog">
+									<h4>个人分类 <small style="cursor: pointer;" data-toggle="modal" data-target="#edittype">[编辑分类]</small></h4>
+								</div>
+								<div class="form-group">
+									<div class="col-lg-10" >	
+										<div class="checkbox catalog-box prv-category">
+											<label>
+										      <input type="checkbox"  value="java" name="private_type">java
+										    </label>
+											<label>
+										      <input type="checkbox"  value="c++" name="private_type">c++
+										    </label>
+											<label>
+										      <input type="checkbox"  value="python" name="private_type">python
+										    </label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div style="margin-top: 100px;">
+								<div class="page-header title-blog">
+									<h4>文章分类</h4>
+								</div>
+								<div class="form-group">
+									<div class="col-lg-10">
+										<div class="checkbox pub-category ">
+											<label>
+						      					<input type="checkbox" name="public_type" value="人工">人工智能
+						    				</label>
+											<label>
+						      					<input type="checkbox" name="public_type">移动开发
+						    				</label>
+											<label>
+						     				 	<input type="checkbox" name="public_type">物联网
+						    				</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div style="margin-top: 100px;">
+								<div class="page-header title-blog">
+									<h4>更多文章<small>（添加关联的文章url）</small></h4>
+								</div>
+								<div class="col-lg-12">
+									<div class="input-group">
+										<input name="article_url" type="text" class="form-control">
+										<span class="input-group-btn">
+				                    		<button class="btn btn-default" type="button">添加</button>
+				                		</span>
+									</div>
+								</div>
+							</div>
+							<div style="margin-top: 100px">
+								<div class="page-header title-blog">
+									<h4>摘要：
+										<small>（默认自动提取您文章的前200字显示在博客首页作为文章摘要，您也可以在这里自行编辑 ）</small>
+									</h4>
+								</div>
+								<div class="col-lg-12" style="padding: 0;">
+									<div role="form">
+										<div class="form-group">
+											<textarea name="article_remark" class="form-control" rows="4" style="width:600px;resize:none;margin: 0 auto;"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div>
+								<div class="btn-submit" role="toolbar" style="padding:0px; margin: 0 auto; text-align: center;">
+									<button type="button"  class="btn btn-default btn-free btn-publish" >发表</button>
+									<button type="button"  class="btn btn-default btn-free btn-save" >保存</button>
+									<button type="button"  class="btn btn-default btn-free btn-giveup" >舍弃</button>
+									<input type="hidden" name="article_state" id="article_state"/>
+								</div>
+							</div>
+						</form>
+				</div>
+				
+			</div>
+		</div>
+		<!--模态框-->
+		<div class="modal fade" id="edittype" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel" style="text-align: center;">个人分类</h4>
+					</div>
+					<div class="modal-body">
+						<div class="prv-type-modal">
+							<div class="prv-type-list">
+								<ol>
+									<li>
+										<span class="prv-total"><span>25</span><span>篇</span></span>
+										<span class="prv-name" pid="123">java</span>
+										<span class="prv-mod-input">
+											<span contenteditable="true" placeholder="please input"></span>
+											<span class="confirm">确定</span>
+											<span class="cancel">取消</span>
+										</span>
+										<span class="prv-operate">
+											<span class="edit">编辑</span>
+											<span class="del">删除</span>
+										</span>
+									</li>
+									<li>
+										<span class="prv-total">25</span>
+										<span class="prv-name">java</span>
+										<span class="prv-mod-input">
+											<span contenteditable="true" placeholder="please input"></span>
+											<span>确定</span>
+											<span class="cancel">取消</span>
+										</span>
+										<span class="prv-operate">
+											<span class="edit">编辑</span>
+											<span>删除</span>
+										</span>
+									</li>
+									<li>
+										<span class="prv-total">25</span>
+										<span class="prv-name">java</span>
+										<span class="prv-mod-input">
+											<span contenteditable="true" placeholder="please input"></span>
+											<span>确定</span>
+											<span class="cancel">取消</span>
+										</span>
+										<span class="prv-operate">
+											<span class="edit">编辑</span>
+											<span>删除</span>
+										</span>
+									</li>
+									<li>
+										<span class="prv-total">25</span>
+										<span class="prv-name">java</span>
+										<span class="prv-mod-input">
+											<span contenteditable="true" placeholder="please input"></span>
+											<span>确定</span>
+											<span class="cancel">取消</span>
+										</span>
+										<span class="prv-operate">
+											<span class="edit">编辑</span>
+											<span>删除</span>
+										</span>
+									</li>
+									<li>
+										<span class="prv-total">25</span>
+										<span class="prv-name">java</span>
+										<span class="prv-mod-input">
+											<span contenteditable="true" placeholder="please input"></span>
+											<span>确定</span>
+											<span class="cancel">取消</span>
+										</span>
+										<span class="prv-operate">
+											<span class="edit">编辑</span>
+											<span>删除</span>
+										</span>
+									</li>
+									<li>
+										<span class="prv-total">25</span>
+										<span class="prv-name">java</span>
+										<span class="prv-mod-input">
+											<span contenteditable="true" placeholder="please input"></span>
+											<span>确定</span>
+											<span class="cancel">取消</span>
+										</span>
+										<span class="prv-operate">
+											<span class="edit">编辑</span>
+											<span>删除</span>
+										</span>
+									</li>
+									<li>
+										<span class="prv-total">25</span>
+										<span class="prv-name">java</span>
+										<span class="prv-mod-input">
+											<span contenteditable="true" placeholder="please input"></span>
+											<span>确定</span>
+											<span class="cancel">取消</span>
+										</span>
+										<span class="prv-operate">
+											<span class="edit">编辑</span>
+											<span>删除</span>
+										</span>
+									</li>
+								</ol>
+							</div>
+							<div class="prv-type-input">
+								<div class="new-prv"><span>+</span>新建个人分类</div>
+								<div class="new-input">
+									<input placeholder="最多输入15个字">
+									<span class="new-click">新建</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="common-footer" class="qgao-section"></div>
+	</body>
+
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta HTTP-EQUIV="Page-Enter" CONTENT="revealtrans(duration=1.0, transition=23)"/>
+		<title>个人主页--蓝白</title>
+		<link rel="shortcut icon" href="../../qgao.ico" /> 
+		
+		<script src="../../support/jquery/jquery.min.js"></script>
+		<script src="../../support/echarts/echarts.js"></script>
+		
+		<script src="../../js/commonTools.js"></script>
+		<script src="../../js/commonService.js"></script>
+		<script src="../../js/user/mainPage.js"></script>
+		<script src="../../js/user/mainPage-poll.js"></script>
+
+		<link href="../../support/iconfont-ali/iconfont.css" rel="stylesheet">
+		
+		<link href="../../css/common.css" rel="stylesheet">
+		<link href="../../css/user/mainPage.css" rel="stylesheet">
+		<link href="../../css/user/mainPage-poll.css" rel="stylesheet">
+		
+		
+	</head>
+	<body style="background: #f5fafa;">
+		<div id="common-header" class="qgao-section"></div>
+		<div class="qgao-section">
+			<div class="qgao-container">
+				<div id="main-page-head">
+					<div class="user-photo"><img class="loged-user-photo" src="../../img/photo.jpg"></div>
+					<div class="user-msg"><span class="user-nick">白慕大</span>
+						<ul>
+							<li class="user-desc">人生苦短</li>
+							<li>上次登录时间：<span class="user-latest">2018-07-05</span></li>
+						</ul>
+					</div>
+					<div class="user-msg-mod"><a href="./userEdit.html?user_id=1521864246651">修改个人资料</a></div>
+				</div>
+				<div class="article-manage-body">
+					<div class="body-left">
+						<div class="lanbai-left-nav">
+							<ul style="margin-top: 20px;">
+								<!--<p>内容</p>-->
+								<li class="active"><span class="glyphicon glyphicon-file"></span>我的文章</li>
+								<li title="poll" ><span class="glyphicon glyphicon-list-alt"></span>我的调查</li>
+								<li><span class="glyphicon glyphicon-comment"></span>我的评论</li>
+								<li><span class="glyphicon glyphicon-bookmark"></span>我的分类</li>
+								<li><span class="glyphicon glyphicon-heart-empty"></span>我的收藏</li>
+								<li><span class="glyphicon glyphicon-headphones"></span>我的好友</li>
+								<li><span class="glyphicon glyphicon-thumbs-up"></span>我赞过的</li>
+								<li><span class="glyphicon glyphicon-leaf"></span>关注/粉丝</li>
+							</ul>
+						</div>
+					</div>
+					<div class="body-right">
+						<div id="lanbai-article" class="show">
+							<div class="lanbai-right-nav">
+								<ul>
+									<li class="active">全部</li>
+									<li>已发表</li>
+									<li>草稿箱</li>
+									<li title="放入回收站十天后将彻底删除">回收站</li>
+									<div style="clear: left;"></div>
+								</ul>
+								
+							</div>
+							<div class="lanbai-tab-content">
+								<div class="body article-all show">
+									<ol>
+										<div class="article-empty">暂无文章</div>
+										<!--<li>
+											<ul>
+												<h1>最简单的spring集成redis</h1>
+												<li style="margin-left:0px;">原创</li>
+												<li>2018年03月21日 23:51:46</li>
+												<li><span class="glyphicon glyphicon-comment"></span> 12</li>
+												<p>
+													<span class="glyphicon glyphicon-pencil"></span>
+													<span class="glyphicon glyphicon-remove"></span>
+												</p>
+											</ul>
+										</li>-->
+									</ol>
+									
+								</div>
+								<div class="body article-publish">
+									<ol>
+										<div class="article-empty">暂无文章</div>
+										<!--<li>
+											<ul>
+												<h1>已发表</h1>
+												<li style="margin-left:0px;">原创</li>
+												<li>2018年03月21日 23:51:46</li>
+												<li><span class="glyphicon glyphicon-comment"></span> 12</li>
+												<p>
+													<span class="glyphicon glyphicon-pencil"></span>
+													<span class="glyphicon glyphicon-remove"></span>
+												</p>
+											</ul>
+										</li>-->
+									</ol>
+								</div>
+								<div class="body article-sketch">
+									<ol>
+										<div class="article-empty">暂无文章</div>
+										<!--<li>
+											<ul>
+												<h1>草稿</h1>
+												<li style="margin-left:0px;">原创</li>
+												<li>2018年03月21日 23:51:46</li>
+												<li><span class="glyphicon glyphicon-comment"></span> 12</li>
+												<p>
+													<span class="glyphicon glyphicon-pencil"></span>
+													<span class="glyphicon glyphicon-remove"></span>
+												</p>
+											</ul>
+										</li>-->
+									</ol>
+								</div>
+								<div class="body article-receiver">
+									<ol>
+										<div class="article-empty">暂无文章</div>
+										<!--<li>
+											<ul>
+												<h1>垃圾箱</h1>
+												<li style="margin-left:0px;">原创</li>
+												<li>2018年03月21日 23:51:46</li>
+												<li><span class="glyphicon glyphicon-comment"></span> 12</li>
+												<p>
+													<span class="glyphicon glyphicon-pencil"></span>
+													<span class="glyphicon glyphicon-remove"></span>
+												</p>
+											</ul>
+										</li>-->
+									</ol>
+								</div>
+							</div>
+						</div>
+						<div id="lanbai-poll" >
+							<iframe width="100%" height="100%" name="myPoll" id="myPoll" frameborder="0"></iframe>
+						</div>
+						<div id="lanbai-comment">
+							<div class="nav">
+								<ul>
+									<li>我的文章评论</li>
+									<li>我发表的评论</li>
+								</ul>
+							</div>
+							<div class="body">
+								<ul>
+									<li>
+										<p style="position: absolute; right: 20px;cursor: pointer;"><span class="glyphicon glyphicon-remove"></span></p>
+										<p class="user">m0_37224390</p>
+										<p class="time">9个月前回复了你的文章</p>
+										<p class="title"><a href="#">Spring 属性注入和构造器注入</a></p>
+										<p class="coment">楼主威武霸气楼主威武霸气楼主威武霸气楼主威武霸气楼主威武霸气<br/><br/><br/><br/><br/>，百慕大日常二逼</p>
+									</li>
+									<li>
+										<p style="position: absolute; right: 20px;cursor: pointer;"><span class="glyphicon glyphicon-remove"></span></p>
+										<p class="user">m0_37224390 </p>
+										<p class="time">9个月前回复了你的文章</p>
+										<p class="title"><a href="#">Spring 属性注入和构造器注入</a></p>
+										<p class="coment">楼主威武霸气楼主威武霸气楼主威武霸气楼主威武霸气楼主威武霸气<br/><br/><br/><br/><br/>，百慕大日常二逼</p>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div id="lanbai-prvtype">
+							<div class="newType">
+								<div class="input-group" style="width: 80%;">
+		      						<input type="text" class="form-control" placeholder="new~">
+		      						<span class="input-group-btn">
+		        						<button class="btn btn-default" type="button">添加分类</button>
+		      						</span>
+		    					</div>
+		    				</div>
+							<div class="nav">
+								<p class="leibie">类别</p>
+								<p class="caozuo">操作</p>
+								<p class="number">文章数</p>
+							</div>
+							<div class="body">
+								<ul>
+									<li>
+										<p class="lb">算法</p>
+										<div class="cz">
+											<p class="update">编辑</p>
+											<p class="delete">删除</p>
+										</div>
+										<p class="nb">42</p>
+									</li>
+									<li>
+										<p class="lb">设计模式</p>
+										<div class="cz">
+											<p class="update">编辑</p>
+											<p class="delete">删除</p>
+										</div>
+										<p class="nb">42</p>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div id="lanbai-collect">
+							<ul>
+								<li>
+									<p>博客标题：</p>
+									<input type="text" class="form-control" value="混合动力火锅的博客">
+								</li>
+								<li>
+									<p>博客描述：</p>
+									<input type="text" class="form-control" value="百慕大蓝白社瞎取名字">
+								</li>
+							</ul>
+							<button class="save">保存</button>
+						</div>
+						<div id="lanbai-friend">
+							<div class="nav">
+								<ul>
+									<li>修改密码</li>
+									<li>编辑个人资料</li>
+								</ul>
+							</div>
+							<div class="body">
+								<ul>
+									<li>
+										<p>&nbsp;&nbsp;&nbsp;旧密码：</p>
+										<input type="text" class="form-control">
+									</li>
+									<li>
+										<p>&nbsp;&nbsp;&nbsp;新密码：</p>
+										<input type="text" class="form-control">
+									</li>
+									<li>
+										<p>确认密码：</p>
+										<input type="text" class="form-control" style="margin-left: -2px;">
+									</li>
+								</ul>
+								<button class="save">保存</button>
+							</div>
+							<div class="body2">
+								<!--<img src="/img/banner.png" />-->
+								<p style="margin-left: 20px;margin-top: 20px;margin-bottom: 20px;">用户名 : m0_37224390</p>
+								<ul>
+									<li><p>头像： </p><input type="text" class="form-control"></li>
+									<li><p><span style="color: red;">*</span>昵称： </p><input type="text" class="form-control"></li>
+									<li><p>职位： </p><input type="text" class="form-control"></li>
+									<li><p>生日：</p><input type="text" class="form-control"></li>
+									<li>
+										<p>性别：</p>
+										<input name="gender" type="radio" value="1" style="width: 20px;margin-top: 12px;">
+										<p style="width: 15px;margin-left: 0px;">男</p>
+										<input name="gender" type="radio" value="2" style="width: 20px;margin-top: 12px;">
+										<p style="width: 15px;margin-left: 0px;">女</p>
+									</li>
+								</ul>
+								<button class="save">保存</button>
+							</div>
+						</div>
+						<div id="lanbai-agree">
+							<div class="nav">
+								<ul>
+									<li>修改密码</li>
+									<li>编辑个人资料</li>
+								</ul>
+							</div>
+							<div class="body">
+								<ul>
+									<li>
+										<p>&nbsp;&nbsp;&nbsp;旧密码：</p>
+										<input type="text" class="form-control">
+									</li>
+									<li>
+										<p>&nbsp;&nbsp;&nbsp;新密码：</p>
+										<input type="text" class="form-control">
+									</li>
+									<li>
+										<p>确认密码：</p>
+										<input type="text" class="form-control" style="margin-left: -2px;">
+									</li>
+								</ul>
+								<button class="save">保存</button>
+							</div>
+							<div class="body2">
+								<!--<img src="/img/banner.png" />-->
+								<p style="margin-left: 20px;margin-top: 20px;margin-bottom: 20px;">用户名 : m0_37224390</p>
+								<ul>
+									<li><p>头像： </p><input type="text" class="form-control"></li>
+									<li><p><span style="color: red;">*</span>昵称： </p><input type="text" class="form-control"></li>
+									<li><p>职位： </p><input type="text" class="form-control"></li>
+									<li><p>生日：</p><input type="text" class="form-control"></li>
+									<li>
+										<p>性别：</p>
+										<input name="gender" type="radio" value="1" style="width: 20px;margin-top: 12px;">
+										<p style="width: 15px;margin-left: 0px;">男</p>
+										<input name="gender" type="radio" value="2" style="width: 20px;margin-top: 12px;">
+										<p style="width: 15px;margin-left: 0px;">女</p>
+									</li>
+								</ul>
+								<button class="save">保存</button>
+							</div>
+						</div>
+						<div id="lanbai-attent">
+							<div class="nav">
+								<ul>
+									<li>修改密码</li>
+									<li>编辑个人资料</li>
+								</ul>
+							</div>
+							<div class="body">
+								<ul>
+									<li>
+										<p>&nbsp;&nbsp;&nbsp;旧密码：</p>
+										<input type="text" class="form-control">
+									</li>
+									<li>
+										<p>&nbsp;&nbsp;&nbsp;新密码：</p>
+										<input type="text" class="form-control">
+									</li>
+									<li>
+										<p>确认密码：</p>
+										<input type="text" class="form-control" style="margin-left: -2px;">
+									</li>
+								</ul>
+								<button class="save">保存</button>
+							</div>
+							<div class="body2">
+								<!--<img src="/img/banner.png" />-->
+								<p style="margin-left: 20px;margin-top: 20px;margin-bottom: 20px;">用户名 : m0_37224390</p>
+								<ul>
+									<li><p>头像： </p><input type="text" class="form-control"></li>
+									<li><p><span style="color: red;">*</span>昵称： </p><input type="text" class="form-control"></li>
+									<li><p>职位： </p><input type="text" class="form-control"></li>
+									<li><p>生日：</p><input type="text" class="form-control"></li>
+									<li>
+										<p>性别：</p>
+										<input name="gender" type="radio" value="1" style="width: 20px;margin-top: 12px;">
+										<p style="width: 15px;margin-left: 0px;">男</p>
+										<input name="gender" type="radio" value="2" style="width: 20px;margin-top: 12px;">
+										<p style="width: 15px;margin-left: 0px;">女</p>
+									</li>
+								</ul>
+								<button class="save">保存</button>
+							</div>
+						</div>
+						
+					</div>
+					<div style="clear:left;"></div>
+				</div>
+				
+			</div>
+		</div>
+		<div id="common-footer" class="qgao-section"></div>
+		<div class="data-modal">
+			<div class="modal-title" title="you could drag this">
+				<div class="modal-remove">
+					<div><span class="glyphicon glyphicon-remove"></span></div>
+				</div>
+				<div class="title-tip">
+					<div class="poll-title">pollTitle</div>
+					<div>----统计情况</div>
+				</div>
+				
+			</div>
+			<div class="modal-body">
+				<div>
+					<div class="mychart-show"></div>
+					<div class="chart-option">
+						<div class="option-select">
+							<div class="option-arrow"></div>
+							<select>
+								<option>bar</option>
+								<option>line</option>
+								<option>pie</option>
+								<!--<option>scatter</option>-->
+							</select>
+						</div>
+					</div>
+					<div class="poll-detail">
+						<div>
+							<span>location:</span>
+							<span class="location">lunar</span>
+						</div>
+						<div>
+							<span>note:</span>
+							<span class="note">please take notes during meeting.4444444444444444444444444444444444444444444</span>
+						</div>
+						<div>
+							<span>ideal for:</span>
+							<span class="ideal">yes</span>
+						</div>
+						<div>
+							<span>vote limit:</span>
+							<span class="limit">no</span>
+						</div>
+						<div>
+							<span>limit num:</span>
+							<span class="limit-num">4</span>
+						</div>
+						<div>
+							<span>is single:</span>
+							<span class="single">yes</span>
+						</div>
+						<div>
+							<span>hide info:</span>
+							<span class="msghide">yes</span>
+						</div>
+						<div class="poll-deadline">
+							<span>deadline:</span>
+							<span class="deadline-show">2018-07-28 15:14:45</span>
+							<span class="deadline-input">
+								<input type="datetime-local" value="2019-03-28T06:07">
+								<div>
+									<span class="deadline-change confirm" >确定</span>
+									<span class="deadline-change cancel" >取消</span>
+								</div>
+							</span>
+							<span class="deadline-change trigger">修改</span>
+							
+							
+						</div>
+					</div>
+				</div>
+				
+				<div class="complete-table">
+					<table border="0">
+						<thead>
+							<tr class="option-tr">
+								<td></td>
+								<td>Feb26TUE</td>
+							</tr>
+							<tr class="partIn-people">
+								<td>
+									<div class="no-suit-tip"><span>2</span> of all said they were not ideal for these options.</div>
+									<span class="poll-bg-partIn">0</span> participants
+								</td>
+								<td class="partIn-per"><span class="glyphicon glyphicon-ok"></span><span>0</span></td>
+							</tr>
+							<tr class="partIn-option">
+								<td>Anonymous</td>
+								<td class="act"><div class="check-option-box"><span class="glyphicon glyphicon-ok"></span></div></td>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+			<div class="modal-foot">
+				<div id="export-excel" class="export-excel">导出Excel</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		
+		
+		$(function() {
+			
+			
+//			showPollDataModal()
+		})
+		//包括子frame的window加载完成后才调用
+		$(window).load(function(){
+			mainPageMain();
+			
+		})
+		
+	</script>
+</html>

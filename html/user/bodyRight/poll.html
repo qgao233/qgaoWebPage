@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../../support/jquery/jquery.min.js"></script>
+		<script src="../../../support/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../../../js/common.js"></script>
+		
+		<link href="../../../support/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<!--<link href="../../../css/common.css" rel="stylesheet">-->
+	</head>
+	<style>
+		body,*{
+			margin: 0;
+			padding: 0;
+		}
+		.poll-nav{
+			text-align: center;
+			position: relative;
+		}
+		.poll-nav ul{
+			display: inline-block;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		.poll-nav li{
+			float: left;
+			padding: 10px 20px;
+		    font-size: 20px;
+		    font-weight: bold;
+		    color: #bbb;
+		    cursor: pointer;
+		}
+		.poll-nav li.active{
+			border-bottom: 1px solid #34a4e6;
+		    border-radius: 5px;
+		    color: #34a4e6;
+		}
+		.poll-nav .new-poll{
+			position: absolute;
+			top: 0px;
+    		right: 10px;
+		}
+		.poll-items{
+			border-top: 1px solid #ddd;
+		}
+		.poll-items>div{
+			display: none;
+		}
+		.poll-items ol{
+			padding: 10px 10px 10px 40px;
+			font-size: 20px;
+		}
+		.poll-item{
+			border-top: 1px dashed #aaa;
+		}
+		.poll-items>div .poll-item:first-child{
+			border: 0px;
+		}
+		.poll-item>div{
+			display: inline-block;
+			vertical-align: top;
+		}
+		.item-left{
+			width: 76%;
+		}
+		.item-left ul{
+			list-style: none;
+		}
+		.item-left li{
+			float: left;
+			border-left: 1px dashed;
+    		padding: 0 5px;
+		}
+		.item-left li:first-child{
+			border: 0px;
+		}
+		.item-left .item-title{
+			font-size: 25px;
+			font-weight: bold;
+    		padding: 0 10px;
+		}
+		.item-left .item-msg{
+		    padding: 20px 10px;
+		    font-size: 10px;
+		    color: #aaa;
+		}
+		.item-right{
+			width: 23%;
+			text-align: center;
+			font-size: 15px;
+			padding: 5px 0;
+		}
+		.item-right>div>div,.item-right>div>ul{
+			display: inline-block;
+		}
+		.item-right ul{
+			list-style: none;
+		}
+		.item-right .look-data-statistic{
+			border: 1px solid #34a4e6;
+		    border-radius: 5px;
+		    padding: 10px 20px;
+		    color: #34a4e6;
+		    cursor: pointer;
+		}
+		.item-right li{
+			padding: 5px 20px;
+			cursor: pointer;
+		}
+		.item-right li.item-remove:hover{
+			color: orangered;
+		}
+	</style>
+	<body>
+		<div>
+			<div class="poll-nav">
+				<ul>
+					<li class="active">进行中</li>
+					<li>已完成</li>
+				</ul>
+				<div style="clear: both;"></div>
+				<div class="new-poll">新建调查</div>
+			</div>
+			<div class="poll-items">
+				<div class="poll-ing show" >
+					<ol>
+						<li class="poll-item">
+							<div class="item-left">
+								<div class="item-title">pollTitle</div>
+								<div class="item-msg">
+									<ul>
+										<li>create: <span>2018-07-28 15:14:45</span></li>
+										<li>update: <span>2018-07-28 15:14:45</span></li>
+									</ul>
+									<div style="clear: both;"></div>
+									<ul>
+										<li>participants: <span>8</span></li>
+										<li>deadline: <span>2018-07-28 15:14:45</span></li>
+									</ul>
+									<div style="clear: both;"></div>
+								</div>
+							</div>
+							<div class="item-right">
+								<div>
+									<div class="look-data-statistic">查看数据统计</div>
+								</div>
+								<div>
+									<ul>
+										<li>编辑</li>
+										<li class="item-remove">删除</li>
+									</ul>
+								</div>
+								
+							</div>
+						</li>
+						<li class="poll-item">
+							<div class="item-left">
+								<div class="item-title">pollTitle</div>
+								<div class="item-msg">
+									<ul>
+										<li>create: <span>2018-07-28 15:14:45</span></li>
+										<li>update: <span>2018-07-28 15:14:45</span></li>
+									</ul>
+									<div style="clear: both;"></div>
+									<ul>
+										<li>participants: <span>8</span></li>
+										<li>deadline: <span>2018-07-28 15:14:45</span></li>
+									</ul>
+									<div style="clear: both;"></div>
+								</div>
+							</div>
+							<div class="item-right">
+								<div>
+									<div class="look-data-statistic">查看数据统计</div>
+								</div>
+								<div>
+									<ul>
+										<li>编辑</li>
+										<li>删除</li>
+									</ul>
+								</div>
+								
+							</div>
+						</li>
+						<li class="poll-item">
+							<div class="item-left">
+								<div class="item-title">pollTitle</div>
+								<div class="item-msg">
+									<ul>
+										<li>create: <span>2018-07-28 15:14:45</span></li>
+										<li>update: <span>2018-07-28 15:14:45</span></li>
+									</ul>
+									<div style="clear: both;"></div>
+									<ul>
+										<li>participants: <span>8</span></li>
+										<li>deadline: <span>2018-07-28 15:14:45</span></li>
+									</ul>
+									<div style="clear: both;"></div>
+								</div>
+							</div>
+							<div class="item-right">
+								<div>
+									<div class="look-data-statistic">查看数据统计</div>
+								</div>
+								<div>
+									<ul>
+										<li class="item-edit">编辑</li>
+										<li class="item-remove">删除</li>
+									</ul>
+								</div>
+								
+							</div>
+						</li>
+					</ol>
+				</div>
+				<div class="poll-ed">
+					<ol></ol>
+				</div>
+			</div>
+		</div>
+		<style>
+			.remove-modal{
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				width: 200px;
+				margin-left: -100px;
+			    color: #888;
+			    border: 1px solid #ddd;
+				border-radius: 5px;
+				padding: 10px;
+				display: none;
+			}
+			.remove-modal .remove-title{
+				text-align: left;
+				padding: 0 0 10px 0;
+			}
+			.remove-modal .remove-button{
+				text-align: center;
+			}
+			.remove-modal>div>div{
+				display: inline-block;
+			}
+			.remove-modal .remove-title .remove-font{
+				font-weight: bold;
+			}
+			.remove-modal .remove-title .remove-icon{
+				float: right;
+			}
+			.remove-modal .remove-title .remove-icon::after{
+				clear: both;
+			}
+			.remove-modal .remove-button>div{
+				padding: 5px 10px;
+			    color: #888;
+			    background: #fafafa;
+			    border: 1px solid #ddd;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+			.remove-modal .remove-confirm:hover{
+				border: 1px solid gold;
+				color: gold;
+				background: #fff;
+			}
+			.remove-modal .tip{
+				color: #aaa;
+				font-size: 10px;
+				padding: 0 0 10px 0;
+			}
+		</style>
+		<div class="remove-modal">
+			<div class="remove-title">
+				<div class="remove-icon"><span class="glyphicon glyphicon-remove"></span></div>
+				<div class="remove-font">是否删除 <span></span> ?</div>
+			</div>
+			<div class="tip">删除后，所有的调查结果也会被一并清空！</div>
+			<div class="remove-button">
+				<div class="remove-confirm">确定</div>
+				<div class="remove-cancel">取消</div>
+			</div>
+		</div>
+	</body>
+	
+	<script>
+		var relative_path = getRelativePath();
+		var front_site = data_file.get_data(relative_path);
+		var pollId;
+		function returnPollId(){
+			return pollId;
+		}
+		function editPollItem(){
+			var $thisLi;
+			$(".item-edit").on("click",function(){
+				$thisLi = $(this).parent().parent().parent().parent("li");
+				pollId = $thisLi.data("poll-id");
+				parent.window.location.href = relative_path + "container/poll/createPoll.html?pollId="+pollId;
+			})
+		}
+		function deletePollItem(front_site){
+			var $thisLi;
+			$(".item-remove").on("click",function(){
+				$thisLi = $(this).parent().parent().parent().parent("li");
+				pollId = $thisLi.data("poll-id");
+				$(".remove-modal").addClass("show");
+			})
+			$(".remove-modal .remove-icon,.remove-modal .remove-cancel").on("click",function(){
+				console.log(pollId)
+				$(".remove-modal").removeClass("show");
+			})
+			$(".remove-modal .remove-confirm").on("click",function(){
+				if(isEmpty(pollId)){
+					return false;
+				}
+				var _this = this;
+				$.ajax({
+					type:"post",
+					url:front_site+"/poll/user/del",
+					data:"pollId="+pollId+"&user_id="+1521864246651,
+					async:true,
+					dataType:"json",
+					success:function(data){
+						if(data.code==data_protocol.success){
+							$(_this).parent().parent(".remove-modal").removeClass("show");
+							$thisLi.hide("0.5",function(e){
+								$(this).remove();
+							});
+						}
+					}
+				});
+			})
+		}
+		
+		function getPollItem(pollObj){
+			var pollItem = '<li class="poll-item" data-poll-id="'+pollObj.pollId+'">'
+							+'<div class="item-left">'
+								+'<div class="item-title">'+pollObj.pollTitle+'</div>'
+								+'<div class="item-msg">'
+									+'<ul>'
+										+'<li>create: <span>'+pollObj.pollCreateTime+'</span></li>'
+										+'<li>update: <span>'+pollObj.pollUpdateTime+'</span></li>'
+									+'</ul>'
+									+'<div style="clear: both;"></div>'
+									+'<ul>'
+										+'<li>participants: <span>'+pollObj.partInNum+'</span></li>';
+					if(isEmpty(pollObj.pollDeadline)){
+						pollItem = pollItem + '<li>deadline: <span>∞</span></li>'
+					}else{
+						pollItem = pollItem + '<li>deadline: <span>'+pollObj.pollDeadline+'</span></li>'
+						
+					}
+					pollItem = pollItem + '</ul>'
+									+'<div style="clear: both;"></div>'
+								+'</div>'
+							+'</div>'
+							+'<div class="item-right">'
+								+'<div>'
+									+'<div class="look-data-statistic">查看数据统计</div>'
+								+'</div>'
+								+'<div>'
+									+'<ul>'
+										+'<li class="item-edit">编辑</li>'
+										+'<li class="item-remove">删除</li>'
+									+'</ul>'
+								+'</div>'
+								
+							+'</div>'
+						+'</li>';
+			return pollItem;
+		}
+		
+		function loadPollItems(front_site){
+			var ingKey = true;
+			getPollItems(front_site,0);
+			var edKey = false;
+//			https://blog.csdn.net/qq_36460164/article/details/79881766
+//对同一对象绑定多次相同的事件，不会覆盖
+			$(".poll-nav ul li").on("click",function(){
+				var _this = this;
+				$(".poll-nav ul li").each(function(index,object){
+					if(_this == object && index == 0){
+						if(ingKey == false){
+							getPollItems(front_site,0);
+							ingKey = true;
+						}
+					}else if(_this == object && index == 1){
+						if(edKey == false){
+							getPollItems(front_site,1)
+							edKey = true;
+						}
+					}
+				})
+			})
+		}
+		
+		function getPollItems(front_site,key){
+			$.ajax({
+				type:"get",
+				url:front_site+"/poll/user/get",
+				data:"key="+key+"&user_id="+1521864246651,
+				async:true,
+				dataType:"json",
+				success:function(data){
+					if(data.code==data_protocol.success){
+						var pollObjArray = data.data;
+						var len = pollObjArray.length;
+						var pollItem = '';
+						for(var i = 0;i<len;i++){
+							pollItem = pollItem + getPollItem(pollObjArray[i]);
+						}
+						var $content;
+						if(key == 0){
+							$content = $(".poll-items .poll-ing>ol");
+						}else if(key == 1){
+							$content = $(".poll-items .poll-ed>ol");
+						}
+						$content.empty();
+						$content.append(pollItem);
+						switchDataModal();
+						deletePollItem(front_site);
+						editPollItem();
+					}
+				}
+			})
+		}
+		
+		function switchDataModal(){
+			$(".look-data-statistic").on("click",function(){
+				pollId = $(this).parent().parent().parent("li").data("poll-id");//供父窗口获得
+				window.parent.showPollDataModal();
+			})
+			window.parent.hidePollDataModal();
+		}
+		
+		//后
+		$(parent).load(function(){
+//			console.log(3)
+//			alert(3);
+			
+			
+		})
+		
+//		先
+		$(window).load(function(){
+//			console.log(1)
+//			alert(1)
+			
+			var user_id = parent.getUserId();
+			console.log("user_id:"+user_id);
+			switchTab($(".poll-nav ul li"),$(".poll-items>div"));
+			loadPollItems(front_site);
+		})
+	</script>
+</html>
+<!--iframe通信
+https://www.cnblogs.com/sydeveloper/p/3712863.html
+https://www.cnblogs.com/w-sansamilly/p/7595481.html
+-->

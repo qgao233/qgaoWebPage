@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>阅读文章--qgao</title>
+		<link rel="shortcut icon" href="../../qgao.ico"/> 
+		
+		<script src="../../support/jquery/jquery.min.js"></script>
+		<!--<script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>-->
+		<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+		<script src="../../support/my/page/js/page.js"></script>
+		
+		<script src="../../js/commonTools.js"></script>
+		<script src="../../js/commonService.js"></script>
+		<script src="../../js/article/readArticle.js"></script>
+
+		<link href="../../support/my/page/css/page.css" rel="stylesheet">
+		<link href="../../support/iconfont-ali/iconfont.css" rel="stylesheet">
+		<link href="../../css/common.css" rel="stylesheet">
+		<link href="../../css/article/readArticle.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div id="common-header" class="qgao-section"></div>
+		<div class="qgao-section read-article-content">
+			<div class="qgao-container content-container">
+				<div class="content-left" data-load-id="1">
+					<div class="load-icon">
+						<span class="iconfont icon-loading"></span>
+					</div>
+					<div class="article-show" data-article-id="233">
+						<div class="article-title">
+							<h1>MyBatis的Mapper接口以及Example的实例函数及详解</h1>
+							<div class="article-type type-copy">转</div>
+							<ul>
+								<li>创建时间：<span class="article-time">2017年03月24日 16:10:15</span></li>
+								<li>
+									标签：<span class="article-tag">mybatis</span>
+									分类：<span class="article-category">java</span>
+								</li>
+								<li class="article-msg">
+									<span class="iconfont icon-browse article-view-count">&nbsp;42</span>
+									<span class="iconfont icon-comments article-comment-count">&nbsp;55</span>
+								</li>
+							</ul>
+						</div>
+						<div class="article-content">
+							近日，李永乐老师发了一篇动态李永乐老师官方的动态-哔哩哔哩 (bilibili.com)，关于日记加密，评论区第一条破解了该加密日记。由于该篇原日记的字数较少，所以还有破解可能，如果日记数字很多，就不容易破解了。但是日记数字多，手动加密就显得很困难。好在李永乐老师也公布了加密方法如何写出加密日记？再也不用担心妈妈偷看啦！ - 哔哩哔哩 (bilibili.com)，于是编写了一个程序，能自动加密一篇日记(代码放在文末，感兴趣的小伙伴，欢迎探讨)。过程如下： 
+						</div>
+						<div class="article-operate">
+							<div>
+								<div class="good">
+									<span class="iconfont icon-good article-icon article-good"></span>
+									<span class="article-good-count">12</span>
+									<div class="bad">
+										<span class="iconfont icon-bad article-icon article-bad"></span>
+										<span class="article-bad-count">10</span>
+									</div>
+								</div>
+								<div class="store">
+									<span class="iconfont icon-collection article-icon article-store"></span>
+									<span class="article-store-count">10</span>
+								</div>
+								<div class="reward">
+									<span class="iconfont icon-brand article-icon article-reward"></span>
+									<span class="article-reward-count">10</span>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					<div class="online-show">
+						<span class="iconfont icon-atm-fill"></span>
+						&nbsp;当前文章&nbsp;<span class="online-people">23</span>&nbsp;人正在阅读&nbsp;
+					</div>
+					<div class="comment-show" data-load-id="2">
+						<h3>评论(<span>55</span>)</h3>
+						<div class="lanbai-input-frame comment-input">
+							<div class="lanbai-input textarea" placeholder="请输入评论..." contenteditable="true"></div>
+							<div class="lanbai-button comment-submit">发表</div>
+							<div class="comment-submit-tip" style="display: none;"></div>
+						</div>
+						<div class="load-icon">
+							<span class="iconfont icon-loading"></span>
+						</div>
+						<div class="comment-list">
+							<ul>
+								<li class="comment-item" cid="7890">
+									<div>
+										<div class="comment-item-title">
+											<ul class="title-left">
+												<li><img src="../../img/photo.jpg"></li>
+												<li uid="654321"><a href="#">白慕大</a></li>
+												<li>2018-07-23 14:02:47</li>
+												<li>#6楼</li>
+											</ul>
+											<ul class="title-right item-operate">
+												<li class="comment-good">
+													<span class="iconfont icon-good comment-good-count">12</span>
+												</li>
+												<li class="comment-bad">
+													<span class="iconfont icon-bad comment-bad-count">10</span>
+												</li>
+											</ul>
+										</div>
+										<div style="clear: both;"></div>
+										<div class="comment-item-content">
+											写得不错
+										</div>
+										<div class="item-operate">
+											<ul>
+												<li>举报</li>
+												<li class="comment-reply-click">回复(<span>25</span>)</li>
+												<li class="comment-reply-back">收起回复(<span>25</span>)</li>
+											</ul>
+											<div class="clearfloat"></div>
+										</div>
+										<div class="comment-reply" data-load-id="3">
+											<div class="load-icon">
+												<span class="iconfont icon-loading"></span>
+											</div>
+											<div class="reply-items">
+												<ul>
+													<li class="reply-item" rid="321">
+														<div>
+															<ul class="title-left">
+																<li><img src="../../img/photo.jpg"></li>
+																<li uid="123456"><a>周树人</a></li>
+																<li>2018-07-23 14:02:47</li>
+															</ul>
+															<ul class="title-right item-operate">
+																<li>举报</li>
+																<li class="reply-click">回复</li>
+															</ul>
+														</div>
+														<div style="clear: both;"></div>
+														<div class="comment-reply-content">
+															瞎说
+														</div>
+													</li>
+													<li class="reply-item" rid="456">
+														<div>
+															<ul class="title-left">
+																<li><img src="../../img/photo.jpg"></li>
+																<li uid="654321"><a>白慕大</a></li>
+																<li>2018-07-23 14:02:47</li>
+															</ul>
+															<ul class="title-right item-operate">
+																<li>举报</li>
+																<li class="reply-click">回复</li>
+															</ul>
+														</div>
+														<div style="clear: both;"></div>
+														<div class="comment-reply-content">
+															<span>回复:@</span>
+															<span><a uid="234">周树人</a>:</span>
+															<span>大佬说的对</span>
+														</div>
+													</li>
+												</ul>
+												<div style="clear: both;"></div>
+												<!--<div class="common-page-list class-reply-list" data-class-name=".class-reply-list" data-total-counts="26"></div>-->
+											</div>
+											<div>
+												<div class="lanbai-input-frame reply-input">
+													<div class="reply-person">回复:@<span uid="123456" rid="321">周树人</span><span>取消</span></div>
+													<div class="lanbai-input textarea" placeholder="请输入回复内容..." contenteditable="true"></div>
+													<div class="lanbai-button reply-submit">回复</div>
+													<div class="reply-submit-tip" style="display: none;"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<!--<div class="common-page-list class-comment-list" data-class-name=".class-comment-list" data-total-counts="45"></div>-->
+						<div class="no-comment">
+							<div>还没有人评论哦！</div>
+						</div>
+					</div>
+				</div>
+				<div class="content-right">
+					<div class="load-icon">
+						<span class="iconfont icon-loading"></span>
+					</div>
+					<div class="article-user">
+						<div class="user-profile">
+							<div class="user-photo">
+								<img src="../../img/photo.jpg">
+							</div>
+							<div>
+								<div class="user-name">
+									<span class="nick-name">233</span>
+									<span class="iconfont icon-email-fill chat-with">私聊</span>
+								</div>
+								<div class="user-site-age">
+									qgao龄
+									<span>3</span>
+									&nbsp;年
+								</div>
+							</div>
+						</div>
+						<div class="user-info">
+							<ul>
+								<li>
+									<div>6 (max)</div>
+									<div>等级</div>
+								</li>
+								<li>
+									<div>66</div>
+									<div>原创</div>
+								</li>
+								<li>
+									<div>66</div>
+									<div>积分</div>
+								</li>
+								<li>
+									<div>66</div>
+									<div>粉丝</div>
+								</li>
+								<li>
+									<div>66</div>
+									<div>获赞</div>
+								</li>
+								<li>
+									<div>66</div>
+									<div>评论</div>
+								</li>
+								<li>
+									<div>66</div>
+									<div>收藏</div>
+								</li>
+							</ul>
+						</div>
+						<div>
+							<div class="user-subscribe">
+								<span class="iconfont icon-add-select">关注</span>
+								<span class="subscribe-count">20.2</span>万
+							</div>
+						</div>
+					</div>
+					<div class="article-local-category">
+						<div class="category-title">ta的个人分类专栏</div>
+						<div class="load-icon">
+							<span class="iconfont icon-loading"></span>
+						</div>
+						<div class="category-content">
+							<ol>
+								<li>
+									<div class="category-name">linux</div>
+									<div class="category-count"><span>3</span>&nbsp;篇</div>
+								</li>
+								<li>
+									<div class="category-name">html/css3</div>
+									<div class="category-count"><span>3</span>&nbsp;篇</div>
+								</li>
+								<li>
+									<div class="category-name">java面经</div>
+									<div class="category-count"><span>3</span>&nbsp;篇</div>
+								</li>
+								<li>
+									<div class="category-name">动态规划</div>
+									<div class="category-count"><span>3</span>&nbsp;篇</div>
+								</li>
+								<li>
+									<div class="category-name">英语语法</div>
+									<div class="category-count"><span>3</span>&nbsp;篇</div>
+								</li>
+								<li>
+									<div class="category-name">408</div>
+									<div class="category-count"><span>3</span>&nbsp;篇</div>
+								</li>
+							</ol>
+						</div>
+					</div>
+					<div class="right-rank">
+						<div class="read-rank">
+							<div class="rank-title">ta的最新文章</div>
+							<div class="load-icon">
+								<span class="iconfont icon-loading"></span>
+							</div>
+							<div class="rank-content">
+								<ol>
+									<li>B 站崩了，总结下「高可用」和「异地多活」</li>
+									<li>FastTunnel-开源内网穿透框架</li>
+									<li>B站挂了之后出现的tengine是个啥？</li>
+									<li>推荐一款自动化测试神器，不会写代码也能做！</li>
+									<li>【故障公告】redis 服务器宕机引发博客站点故障</li>
+									<li>vue3后台管理系统（模板）</li>
+								</ol>
+							</div>
+						</div>
+						<div class="comment-rank">
+							<div class="rank-title">ta的最新评论</div>
+							<div class="load-icon">
+								<span class="iconfont icon-loading"></span>
+							</div>
+							<div class="rank-content">
+								<ol>
+									<li>B 站崩了，总结下「高可用」和「异地多活」</li>
+									<li>FastTunnel-开源内网穿透框架</li>
+									<li>B站挂了之后出现的tengine是个啥？</li>
+									<li>推荐一款自动化测试神器，不会写代码也能做！</li>
+									<li>【故障公告】redis 服务器宕机引发博客站点故障</li>
+									<li>vue3后台管理系统（模板）</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="common-footer" class="qgao-section"></div>
+		<div id="note-modal">
+			<div class="note-modal-spread">
+				<div>好记性不如烂笔头<br><br>点击我记录下阅读灵感吧</div>
+			</div>
+			<div class="note-header">
+				小本本
+				<div class="note-modal-collapse" >收回>>></div>
+				<div style="clear: both;"></div>
+			</div>
+			<div class="lanbai-input-frame note-content ">
+				<div class="lanbai-input note-text" placeholder="赶紧记笔记..." contenteditable="true"></div>
+			</div>
+			<div class="note-footer">
+				<span class="note-save">保存</span>
+				<span class="note-tip">tip:点击保存后，离开本标签网页就会消失哦</span>
+			</div>
+		</div>
+	</body>
+	<script>
+		$(window).load(function(){
+			readArticleMain();
+		})
+	</script>
+	
+</html>

@@ -1,0 +1,112 @@
+#lanbai-modal{
+	-webkit-user-select:none;/*文字无法选中*/
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+	display: none;
+}
+#lanbai-modal #model-frame-mask{
+	position: fixed;
+	background: #ccc;
+	filter: alpha(opacity=50); 
+	opacity: .5;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	top:0;
+	left: 0;
+	bottom:0;
+	right:0;
+}
+
+#lanbai-modal #model-frame{
+	position: fixed;
+	background: #fff;
+	width: 600px;
+	border:solid 1px #eee;
+	border-radius: 5px;
+	z-index: 101;
+	top:100px;
+	left: 50%;
+	margin-left: -300px;
+	box-shadow: 0 0 15px #ccc;
+}
+
+#lanbai-modal #modal-header{
+	border-bottom: 1px solid #eee;
+	padding: 5px 15px;
+	text-align: center;
+}
+
+#lanbai-modal #modal-header .modal-title-text{
+	margin: 10px 0;
+	font-size: 15px;
+}
+
+#lanbai-modal #modal-header .modal-btn-cancel{
+	float: right;
+	color: #888;
+	font-size:20px;
+	cursor: pointer;
+}
+#lanbai-modal #modal-header .modal-btn-cancel:active{
+	color: #444;
+}
+
+
+
+#lanbai-modal #modal-footer{
+	border-top: 1px solid #eee;
+	text-align: center;
+}
+
+#lanbai-modal #modal-footer button{
+	width:120px;
+	height: 30px;
+	margin: 10px;
+	outline: none;
+	cursor: pointer;
+	color: #888;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1
+}
+#lanbai-modal #modal-footer button:active{
+	color: #444;
+    background: #eee;
+    border-color: #ccc;
+}
+#lanbai-modal #modal-container{
+	text-align: center;
+}
+#lanbai-modal #modal-container>div{
+	padding: 5px 0;
+}
+#lanbai-modal #modal-container>div input{
+	border-radius: 5px;
+	outline: none;
+    border: 1px solid #ccc;
+    padding: 0 5px;
+}
+
+/*<div id="lanbai-modal">
+			<div id="model-frame-mask"></div>
+			<div id="model-frame">
+				<div id="modal-title">
+					<div class="modal-btn-cancel">×</div>
+					<div class="modal-title-text">头像上传</div>
+				</div>
+				<div id="modal-container">
+					<div>您的识别码（自定义）：<input class="fill-mail"></div>
+					<div>tips:匿名时若不输入，会直接跳转到主页（此号码用于识别该调查的发起者）</div>
+				</div>
+				<div id="modal-footer">
+					<button class="modal-btn-confirm">确定</button>
+					<button class="modal-btn-cancel">取消</button>
+				</div>
+			</div>
+		</div>*/

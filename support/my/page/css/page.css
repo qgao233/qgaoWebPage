@@ -1,0 +1,49 @@
+/*******************************分页组件*************************************/
+
+*{
+	padding: 0;
+	margin: 0;
+}
+
+.common-page-list{
+	overflow: hidden;
+    margin: 0 auto;
+    max-width: fit-content;
+    user-select: none;
+}
+.common-page-list>div>div,.common-page-list>div>ul{
+	display: inline-block;
+	margin-bottom: 0;
+	float: left;
+}
+.common-page-list>div>div{
+    height: 30px;
+    line-height: 30px;
+    margin: 3px;
+    padding: 0 10px;
+    cursor: pointer;
+    
+    border: 1px solid #0000;
+}
+.common-page-list li{
+    list-style-type: none;
+    float: left;
+    padding: 0 10px !important;
+    line-height: 30px;
+    margin: 3px;
+    cursor: pointer;
+    border: 1px solid #0000 !important;
+    width: auto !important;
+}
+.common-page-list li:hover,.common-page-list>div>div:hover{
+	border: 1px solid #2196F3 !important;
+	color: #2196F3;
+}
+.common-page-list li.active{
+	background: #eee;
+}
+.common-page-list li.active:hover{
+	background: #eee;
+	border: 1px solid #0000;;
+	color: #333;
+}

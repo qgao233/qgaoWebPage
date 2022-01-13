@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Poll settings</title>
+		<link rel="shortcut icon" href="../../../lanbai.ico" /> 
+		
+		<script src="../../../support/jquery/jquery.min.js"></script>
+		<!--<script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>-->
+		<script src="../../../support/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../../../js/common.js"></script>
+		
+		
+		<link href="../../../support/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../../css/module/lanbai-modal.css" rel="stylesheet">
+		
+		
+		<link href="../../../css/common.css" rel="stylesheet">
+		<link href="../../../css/poll/createPoll.css" rel="stylesheet">
+		<link href="../../../css/poll/pollOptions.css" rel="stylesheet">
+		<link href="../../../css/poll/pollSettings.css" rel="stylesheet">
+		
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div id="header"></div>
+		<div class="pollcreate-container">
+			<div class="create-step">step 3 of 4</div>
+			<div class="create-title">Poll settings</div>
+			<div class="create-form">
+				<div class="create-items-column create-items-column1">
+					<div class="check-item">
+						<div class="check-item-col-1"><div><span class="glyphicon glyphicon-ok real-icon"></span></div></div>
+						<div class="check-item-col-2">
+							<div class="check-item-title">Yes, no, if need be</div>
+							<div class="check-item-desc">Participants can indicate if an option is not ideal for them.</div>
+						</div>
+						<div class="check-item-col-3"><div class="check-option-box" data-check="no-ideal"><span class="glyphicon glyphicon-ok"></span></div></div>
+					</div>
+					<div class="check-item">
+						<div class="check-item-col-1"><div><span class="glyphicon glyphicon-user real-icon"></span></div></div>
+						<div class="check-item-col-2">
+							<div class="check-item-title">Limit the number of votes per option</div>
+							<div class="check-item-desc">First come, first served. Once the spots are filled, the option is no longer available.</div>
+						</div>
+						<div class="check-item-col-3"><div class="check-option-box limit-box" data-check="limit1"><span class="glyphicon glyphicon-ok"></span></div></div>
+					</div>
+					<div class="check-item limit-item1-option">
+						<div>
+							<input type="number" value="1" min="1" max="5" maxlength="1" oninput="value=value.replace(/[^\d]/g,'');if(value>5)value=5;else if(value<1) value=1;if(value.length!=1)value=1;">
+							<div>Votes per option:</div>
+						</div>
+					</div>
+					<div class="check-item">
+						<div class="check-item-col-1"><div><span class="glyphicon glyphicon-italic real-icon"></span></div></div>
+						<div class="check-item-col-2">
+							<div class="check-item-title">Limit participants to a single vote</div>
+							<div class="check-item-desc">Participants can only select one option.</div>
+						</div>
+						<div class="check-item-col-3"><div class="check-option-box limit-box"><span class="glyphicon glyphicon-ok"></span></div></div>
+					</div>
+					<div class="check-item">
+						<div class="check-item-col-1"><div><span class="glyphicon glyphicon-eye-close real-icon"></span></div></div>
+						<div class="check-item-col-2">
+							<div class="check-item-title">Hidden poll</div>
+							<div class="check-item-desc">Participants’ names, comments and votes are confidential. Only you can see the results.</div>
+						</div>
+						<div class="check-item-col-3"><div class="check-option-box"><span class="glyphicon glyphicon-ok"></span></div></div>
+					</div>
+				</div>
+				<div class="create-items-column create-items-column2">
+					<div class="check-item create-items-column2-title">
+						<div><span class="glyphicon glyphicon-flash real-icon"></span></div>
+						<div>
+							<span id="right-unlock">Unlock with Premium</span>
+							<span class="glyphicon glyphicon-link real-icon"></span>
+						</div>
+					</div>
+					<div class="check-item">
+						<div class="check-item-col-1"><div><span class="glyphicon glyphicon-bell real-icon"></span></div></div>
+						<div class="check-item-col-2">
+							<div class="check-item-title">Set a deadline</div>
+							<div class="check-item-desc">Show participants the latest time to vote by</div>
+						</div>
+						<div class="check-item-col-3 option-charge">
+							<div class="check-option">
+								<div>
+									<div class="check-option-box"><span class="glyphicon glyphicon-ok"></span></div>
+									<div class="check-option-calendarPlug"><span class="glyphicon glyphicon-time real-icon"></span>Mon 4 Mar</div>
+									<div class="check-option-lead">in 5 days</div>
+								</div>
+								<div class="clearFloat"></div>
+							</div>
+						</div>
+					</div>
+					<div class="check-item">
+						<div class="check-item-col-1"><div><span class="glyphicon glyphicon-question-sign real-icon"></span></div></div>
+						<div class="check-item-col-2">
+							<div class="check-item-title">Ask for contact information</div>
+							<div class="check-item-desc">Ask for your participants’ emails, phone numbers, or mailing addresses.</div>
+						</div>
+						<div class="check-item-col-3 option-charge">
+							<div class="check-option">
+								<div>
+									<div class="check-option-box"><span class="glyphicon glyphicon-ok"></span></div>
+									<div class="check-option-text">Email</div>
+								</div>
+								<div class="clearFloat"></div>
+							</div>
+							<div class="check-option">
+								<div>
+									<div class="check-option-box"><span class="glyphicon glyphicon-ok"></span></div>
+									<div class="check-option-text">Phone number</div>
+								</div>
+								<div class="clearFloat"></div>
+							</div>
+							<div class="check-option">
+								<div>
+									<div class="check-option-box"><span class="glyphicon glyphicon-ok"></span></div>
+									<div class="check-option-text">Address</div>
+								</div>
+								<div class="clearFloat"></div>
+							</div>
+						</div>
+					</div>
+					<div class="check-item">
+						<div class="check-item-col-1"><div><span class="glyphicon glyphicon-remove real-icon"></span></div></div>
+						<div class="check-item-col-2">
+							<div class="check-item-title">Remove Ads</div>
+							<div class="check-item-desc">Make your Doodle polls look professional and distraction-free.</div>
+						</div>
+						<div class="check-item-col-3 option-charge">
+							<div class="check-option">
+								<div>
+									<div class="check-option-box"><span class="glyphicon glyphicon-ok"></span></div>
+									<div class="check-option-text">Run fullscreen without ads</div>
+								</div>
+								<div class="clearFloat"></div>
+							</div>
+						</div>
+					</div>
+					<div class="check-item">
+						<div class="check-item-col-1"><div><span class="glyphicon glyphicon-envelope real-icon"></span></div></div>
+						<div class="check-item-col-2">
+							<div class="check-item-title">Every invitee's move</div>
+							<div class="check-item-desc">See who's missing and who received or opened the invitation.</div>
+						</div>
+						<div class="check-item-col-3 option-charge">
+							<div class="check-option">
+								<div>
+									<div class="check-option-box"><span class="glyphicon glyphicon-ok"></span></div>
+									<div class="check-option-text">Send reminders</div>
+								</div>
+								<div class="clearFloat"></div>
+							</div>
+							<div class="check-option">
+								<div>
+									<div class="check-option-box"><span class="glyphicon glyphicon-ok"></span></div>
+									<div class="check-option-text">Send poll results</div>
+								</div>
+								<div class="clearFloat"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="height: 80px;"></div>
+			<div class="create-continue-fixed">
+				<div class="create-continue1">
+					<div class="back-button">ㄑ</div>
+					<div class="continue-button">Finish</div>
+				</div>
+			</div>
+			<div class="create-continue">
+				<div class="create-continue1">
+					<div class="back-button">ㄑ</div>
+					<div class="continue-button">Finish</div>
+				</div>
+			</div>
+		</div>
+		<style>
+			#lanbai-modal #model-frame{
+				width: 400px;
+				margin-left: -200px;	
+			}
+		</style>
+		<div id="lanbai-modal">
+			<div id="model-frame-mask"></div>
+			<div id="model-frame">
+				<div id="modal-header">
+					<div class="modal-btn-cancel">×</div>
+					<div class="modal-title-text">信息询问</div>
+				</div>
+				<div id="modal-container">
+					<div>您的识别码（自定义）：<input class="fill-code"></div>
+					<div>tips:匿名时若不输入，会直接跳转到主页（此号码用于识别该调查的发起者）</div>
+				</div>
+				<div id="modal-footer">
+					<button class="modal-btn-confirm">确定</button>
+					<button class="modal-btn-cancel">取消</button>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../../../js/createPoll.js"></script>
+	<script src="../../../js/pollOptions.js"></script>
+	<script>
+		
+		var relative_path = getRelativePath();
+		var front_site = data_file.get_data(relative_path);
+		
+		var urlPollId,passToken,sessionPollId;
+ 		var isLogin = false;
+ 		var isEdit = false;
+		
+		
+		function pollSettingsInit(){
+			$(".create-items-column2 .check-option-box").disable();
+			modalprocess();
+			judgeEdit();
+			judgeLogin();
+		}
+		function judgeLogin(){
+			var headerParams = getHeaderParams();
+			$.ajax({
+				type:"get",
+				url:front_site+"/isLogin",
+				async:true,
+				headers:headerParams,
+				dataType:"json",
+				success:function(data){
+					if(data.code == data_protocol.success){
+						isLogin = true;
+						userSettingsOpen();
+						judgeUrl();							//如果登录，直接判断地址参数
+					}else if(data.code == data_protocol.unauthc){
+						isLogin = false;
+						judgeUrl();			//如果匿名，需要先获得标识码
+					}else{
+						alert("联系管理员进行处理！");
+						return false;
+					}
+				}
+			});
+		}
+		
+		function judgeEdit(){
+			urlPollId = getRequestParameter().pollId;
+ 			if(typeof urlPollId != undefined && urlPollId != null){
+				isEdit = true; 				
+ 			}else{
+ 				isEdit = false;
+ 			}
+		}
+		
+		function judgeUrl(){
+ 			
+ 			if(isEdit){
+ 				console.log("进行编辑");
+ 				if(!isLogin){			//如果没有登录（匿名）
+ 					passToken = sessionStorage.getItem("lanbai-poll-passToken");
+ 					if(isEmpty(passToken)){
+ 						$("#lanbai-modal").fadeIn(300);	//若为空，则打开模态框，让游客填写标识码用以判断是否有这个调查
+ 						return false;
+ 					}
+					editRequestSite();
+ 				}else{
+					editRequestSite();
+ 				}
+ 				
+ 			}else{
+				console.log("进行保存更新");
+ 				sessionPollId = sessionStorage.getItem("lanbai-poll-id");
+ 				if(isEmpty(sessionPollId)){
+ 					window.location.href = "../createPoll.html";	//如果为空，则重新创建调查
+ 				}
+ 				if(!isLogin){			//如果没有登录（匿名）
+ 					passToken = sessionStorage.getItem("lanbai-poll-passToken");
+ 				}
+ 			}
+		}
+		
+		function modalprocess(){
+ 			$("#lanbai-modal .modal-btn-cancel").on("click",function(){
+ 				jumpIndex(relative_path);
+ 			})
+ 			$("#lanbai-modal .modal-btn-confirm").on("click",function(){
+ 				passToken = $.trim($("#lanbai-modal .fill-code").val());		//获得标识码
+ 				if(isEmpty(passToken)){
+ 					alert("请输入！");
+ 					return false;
+ 				}
+ 				editRequestSite();
+ 				$("#lanbai-modal").fadeOut(300);
+ 			})
+ 		} 
+		//判断右边的设置是否可以选择（以用户登录为判断标准）
+		function userSettingsOpen(){
+			$(".create-items-column2 .check-option-box").enable();
+			$("#right-unlock").html("Unlocked!");
+			$(".create-items-column2").css("background","#fff");
+		}
+		
+		//只有编辑用的方法
+		function editRequestSite(){
+			
+			if(isEdit){
+ 				var pollObj = {
+ 					pollId:urlPollId
+ 				};
+ 				var site = front_site + "/poll/authc/get";
+	 			var headers = getHeaderParams();
+	 			if(!isLogin){		//如果未登录
+	 				site = front_site + "/poll/identifyCode/get";
+	 				headers = '';
+	 				pollObj['pollCreatePwd'] = passToken;
+	 			}
+	 			
+	 			$.ajax({
+					type:"post",
+					url:site,
+					async:true,
+					headers:headers,
+					data:JSON.stringify(pollObj),
+					contentType:'application/json;charset=utf-8',
+					dataType:"json",
+					success:function(data){
+						if(data.code == data_protocol.success){
+							var pollData = data.data;
+							setPageOptions(pollData);
+						}else{
+							window.location.href = "../createPoll.html";
+						}
+					}
+				});
+			}
+			
+		}
+		
+		function setPageOptions(pollObj){
+			var $checkOks = $(".check-option-box");
+			if(pollObj.pollIfsuit == '1'){
+				$checkOks.children().eq(0).show();
+			}
+			if(pollObj.pollOptionIflimit == '1'){
+				$checkOks.children().eq(1).show();
+				$(".limit-item1-option").show("0.2");
+				$(".limit-item1-option input").val(parseInt(pollObj.pollOptionLimit));
+			}
+			if(pollObj.pollIfsingle == '1'){
+				$checkOks.children().eq(2).show();
+			}
+			if(pollObj.pollMsgIfhide == '1'){
+				$checkOks.children().eq(3).show();
+			}
+			if(!isEmpty(pollObj.pollDeadline)){
+				$checkOks.children().eq(4).show();
+			}
+			if(pollObj.pollMsgIsask == '1'){
+				$checkOks.children().eq(5).show();
+				$checkOks.children().eq(6).show();
+				$checkOks.children().eq(7).show();
+				
+			}
+			if(pollObj.pollAdsIsremove == '1'){
+				$checkOks.children().eq(8).show();
+			}
+			if(pollObj.pollRemindIssend == '1'){
+				$checkOks.children().eq(9).show();
+				$checkOks.children().eq(10).show();
+				
+			}
+		}
+		
+		//勾选框的动画
+		function checkboxChange(){
+			$(".check-option-box").on("click",function(){
+				var $checkOk = $(this).children();
+				if($checkOk.is(":visible")){
+					$checkOk.hide('0.5');
+					if($(this).data("check")=="no-ideal"){
+						$(".limit-box").enable();
+					}
+					if($(this).data("check")=="limit1"){
+						$(".limit-item1-option").hide("0.2");
+					}
+				}else{
+					$checkOk.show('0.5');
+					if($(this).data("check")=="no-ideal"){
+						$(".limit-box").disable();
+						$(".limit-item1-option").hide("0.2");
+					}
+					if($(this).data("check")=="limit1"){
+						$(".limit-item1-option").show("0.2");
+					}
+				}
+			})
+		}
+		function backPage(){
+			$(".back-button").on("click",function(){
+				if(isEdit){
+					window.location.href="./pollOptions.html?pollId="+urlPollId;
+				}else{
+					window.location.href="./pollOptions.html?pollId="+sessionPollId;
+				}
+			})
+		}
+		function nextPage(){
+			$(".continue-button").on("click",function(){
+				var $checkOks = null;
+				if(isLogin){
+					$checkOks = $(".check-option-box");
+				}else{
+					$checkOks = $(".create-items-column1 .check-option-box");
+				}
+				
+				var ifSuit,ifLimit,ifSingle,ifHide;
+				var isDeadline,isMsgAsk,isAdsRemove,isRemindSend;
+				$checkOks.each(function(index,object){
+					if($(object).children().is(":visible")){
+						switch(index){
+							case 0:ifSuit = '1';break;
+							case 1:ifLimit = '1';break;
+							case 2:ifSingle = '1';break;
+							case 3:ifHide = '1';break;
+							case 4:isDeadline = '1';break;
+							case 5:isMsgAsk = '1';break;
+							case 6:isMsgAsk = '1';break;
+							case 7:isMsgAsk = '1';break;
+							case 8:isAdsRemove = '1';break;
+							case 9:isRemindSend = '1';break;
+							case 10:isRemindSend = '1';break;
+							
+							default:break;
+						}
+					}
+					
+				})
+				var limitNum;
+				if(ifLimit == '1'){
+					limitNum = $(".limit-item1-option input").val();
+				}
+				
+				var pollObj = {};
+				//游客
+				pollObj['pollIfsuit'] = ifSuit;
+				pollObj['pollOptionIflimit'] = ifLimit;
+				pollObj['pollOptionLimit'] = limitNum;
+				pollObj['pollIfsingle'] = ifSingle;
+				pollObj['pollMsgIfhide'] = ifHide;
+				if(isLogin){
+					//用户
+					pollObj['pollDeadline'] = null;
+					pollObj['pollMsgIsask'] = isMsgAsk;
+					pollObj['pollAdsIsremove'] = isAdsRemove;
+					pollObj['pollRemindIssend'] = isRemindSend;
+				}
+				
+				var site = null;
+				var headers = '';
+				if(!isLogin){//未登录（匿名形式）
+					pollObj['pollCreatePwd'] = passToken;
+					if(isEdit){//编辑
+						pollObj['pollId'] = urlPollId;
+					}else{											//保存
+						pollObj['pollId'] = sessionPollId;
+					}
+					site = front_site+"/poll/identifyCode/updateSettings";
+				}else{												//已登录（用户）
+					headers = getHeaderParams();
+					if(isEdit){//编辑
+						pollObj['pollId'] = urlPollId;
+					}else{											//保存
+						pollObj['pollId'] = sessionPollId;
+					}
+					site = front_site+"/poll/authc/updateSettings";
+				}
+				
+				$.ajax({
+					type:"post",
+					url:site,
+					async:false,
+					headers:headers,
+					contentType:'application/json;charset=utf-8',
+					dataType:"json",
+					data:JSON.stringify(pollObj),
+					success:function(data){
+						if(data.code==data_protocol.success){
+//							console.log("success");
+							sessionStorage.removeItem("lanbai-poll-id");
+							window.location.href="../pollComplete.html?pollId="+data.data.pollId;
+						}else if(data.code==data_protocol.unauthc){
+							jumpLogin(relative_path,return_uri);
+						}else if(data.code==data_protocol.intentialError){
+							alert(data.info);	
+						}else{
+							alert(data.info+"(请联系管理员处理)");
+						}
+					},
+					error:function(data){
+						console.log(data)
+					}
+				});
+	 		})
+		}
+		$(function(){
+	 		initnav(front_site,relative_path);//初始化导航栏的分类
+	 		continueDivSwitch();//下方“继续div（固定）”隐藏出现
+	 		backPage();
+	 		nextPage();
+	 		checkboxChange();
+	 		pollSettingsInit();
+		})
+		
+	</script>
+
+</html>

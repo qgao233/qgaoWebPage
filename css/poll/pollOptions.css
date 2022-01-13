@@ -1,0 +1,72 @@
+.back-button{
+				position: absolute;
+				font-weight: bold;
+				width: 50px;
+				height: 50px;
+				padding: 15px 0;
+				border-radius: 5px;
+				border: 1px solid #bbb;
+				color:#999;
+				top: 8px;
+				right: 160px;
+				cursor: pointer;
+			}
+			.create-navigate{
+				text-align: center;
+			}
+			.create-navigate ul{
+				display: inline-block;
+				list-style-type:none;
+			}
+			.create-navigate li{
+				float: left;
+				padding: 5px 20px;
+				color: #fff;
+				cursor: pointer;
+				font-weight: bold;
+			}
+			.create-navigate li.active{
+				border-bottom: 2px solid #fff;
+			}
+			.create-navigate li:hover{
+				border-bottom: 2px solid #fff;
+			}
+			.create-items>div{
+				padding: 0;
+			}
+			.create-items>div>div{
+				padding: 15px 0;
+			}
+			.create-items.mgnpad{
+				margin: 0;
+				padding: 0;
+			}
+			
+			.option-text ol{
+				list-style-type: decimal;
+				color: #f228;
+    			font-size: 20px;
+			}
+			.option-text ol li{
+				padding: 10px 0;
+			}
+			.option-text ol li .item-input{
+				color: #333;
+				font-size: 15px;
+				margin-left: 5px;
+			}
+			.option-text ol li .form2-item-icon{
+			    width: 25px;
+			    height: 25px;
+			    margin-left: 5px;
+			    padding: 5px 0 ;
+			    font-size: 10px;
+			    color:#ddd;
+			    cursor: pointer;
+			    text-align: center;
+			}
+			.option-text ol li .form2-item-icon:hover{
+				color:#444;
+				/*background: #caf0f7;*/
+				border-radius: 5px;
+			}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>注册--qgao</title>
+		<link rel="shortcut icon" href="../../qgao.ico" /> 
+		
+		<script src="../../support/jquery/jquery.min.js"></script>
+		<script src="../../js/commonTools.js"></script>
+		<script src="../../js/commonService.js"></script>
+		
+		<script src="../../js/login/register.js"></script>
+		
+		<link href="../../support/iconfont-ali/iconfont.css" rel="stylesheet">
+		
+		<link href="../../css/common.css" rel="stylesheet">
+		<link href="../../css/login/login.css" rel="stylesheet" >
+		<link href="../../css/login/register.css" rel="stylesheet" >
+	</head>
+	<script>
+		$(function(){
+			relative_path = getRelativePath();
+			initCommonHeader();
+			initCommonFooter();
+			checkCommonHeader();
+			
+			
+			var front_site = data_file.get_data(relative_path);
+ 			initnav(front_site,relative_path);//初始化导航栏的分类
+		})
+	</script>
+	<body>
+		<div id="common-header" class="qgao-section"></div>
+		<div class="qgao-section">
+			<div class="qgao-container">
+				<div class="login-body">
+					<div class="title-line">
+						<span class="tit" style="font-size: 38px;">注册</span>
+					</div>
+					<div class="regist-form">
+						<form style="margin-top: 70px;">
+							<ul>
+								<li>
+									<input class="form-input regist-mail" placeholder="填写常用邮箱">
+									<span class="tip regist-mail-tip"></span>
+								</li>
+								<li>
+									<input class="form-input val-code" style="float: left;" placeholder="验证码">
+									<img class="val-code-img"  >
+									<span class="tip val-code-tip"></span>
+								</li>
+								<li class="last" style="padding-top: 10px;clear:left;">
+									<label>
+										<input type="checkbox" class="rule-check" style="vertical-align:middle" value="1" name="agree_rule">
+										我已同意<a>《蓝白社社员使用协议》</a>和<a>《蓝白社账号中心规范》</a>
+									</label>
+								</li>
+								<li class="send-mail">
+									<a href="javascript:;" class="lanbai-btn btn-submit">发送验证邮件</a>
+								</li>
+							</ul>
+						</form>
+						
+					</div>
+				</div>
+				<div class="login-footer">
+					<span>还没有账号?</span>&nbsp;&nbsp;
+					<a href="login.html">已有账号，直接登录</a>&nbsp;&nbsp;•&nbsp;&nbsp;
+					<a href="javascript:;">游客访问</a>&nbsp;&nbsp;	
+				</div>
+			</div>
+		</div>
+		<div id="common-footer" class="qgao-section"></div>
+	</body>
+</html>

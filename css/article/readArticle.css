@@ -1,0 +1,510 @@
+/******************************文章内容***********************************/
+
+.read-article-content{
+	overflow: hidden;
+	margin-top: 20px;
+}
+
+.read-article-content .content-container>div{
+	float: left;
+}
+
+/*--左侧内容--*/
+.read-article-content .content-left{
+	height: auto;/*记得改成auto*/
+	width: 70%;
+}
+
+/*--右侧内容--*/
+.read-article-content .content-right{
+	width: 30%;
+}
+
+.read-article-content .content-left>div {
+	background:#fdfdfd;
+	width: 100%;
+	border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.read-article-content .content-left .article-type{
+	float: right;
+	margin: 0 auto;
+	max-width: fit-content;
+	border-radius: 5px;
+	color: #fff;
+	padding: 5px;
+	text-align: center;
+	line-height: 20px;
+}
+
+.read-article-content .content-left .type-original{
+	background-color: #3898ec;
+}
+
+.read-article-content .content-left .type-copy{
+	background-color: #fc5531;
+}
+
+.read-article-content .content-left .type-translate{
+	background-color: #ffafc9;
+}
+
+.read-article-content .content-left .type-log{
+	background-color: #ff2825;
+}
+
+
+.read-article-content .content-left .article-show>div{
+	padding: 20px 25px;
+	border-bottom: 1px solid #ddd;
+}
+.read-article-content .content-left .article-title h1{
+	color: #2c3033;
+    font-size: 20px;
+    display:inline-block;
+}
+.read-article-content .content-left .article-title ul{
+	color: #bbb;
+	padding-top: 10px;
+}
+.read-article-content .content-left .article-title ul li{
+	padding-top: 5px;
+}
+
+.read-article-content .content-left .article-title li.article-msg>span{
+	margin-right: 10px;
+}
+
+.read-article-content .content-left .article-operate>div{
+	text-align: center;
+	margin: 0 auto;
+	max-width: fit-content;
+	line-height: 30px;
+}
+.read-article-content .content-left .article-operate>div>div{
+	display: inline-block;
+	padding: 0 20px;
+
+}
+
+.read-article-content .content-left .article-operate>div>div span{
+	vertical-align: middle;
+}
+
+.read-article-content .content-left .article-operate span.article-icon{
+	cursor: pointer;
+	font-size: 30px;
+	position: relative;
+	opacity: 0.7;
+	transition: font-size 0.2s,opacity 0.2s;
+	-moz-transition:font-size 0.2s,opacity 0.2s; /* Firefox 4 */
+	-webkit-transition:font-size 0.2s,opacity 0.2s; /* Safari and Chrome */
+	-o-transition:font-size 0.2s,opacity 0.2s; /* Opera */
+}
+.read-article-content .content-left .article-operate span.article-icon:hover{
+	/*font-size: 40px;*/
+	opacity: 1;
+}
+.read-article-content .content-left .article-operate span.article-good{
+	color: #ff2825;
+}
+.read-article-content .content-left .article-operate span.article-bad{
+	color: #0007;
+}
+.read-article-content .content-left .article-operate span.article-store{
+	color: #ffafc9;
+}
+.read-article-content .content-left .article-operate span.article-reward{
+	color: #ffafc9;
+}
+
+.read-article-content .content-left .article-operate .good{
+	position: relative;
+}
+
+.read-article-content .content-left .article-operate .bad{
+	position: absolute;
+	top: 40px;
+    background: #fff;
+}
+
+.read-article-content .content-left .online-show{
+	padding: 0 25px;
+}
+
+ /* ------------------------------暂时不知道是啥--------------------*/
+
+
+
+
+/* table 样式 */
+.read-article-content .content-left .article-content img{
+	max-width:100%;
+}
+.read-article-content .content-left .article-content table {
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+}
+.read-article-content .content-left .article-content table td,
+.read-article-content .content-left .article-content table th {
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  padding: 3px 5px;
+}
+.read-article-content .content-left .article-content table th {
+  border-bottom: 2px solid #ccc;
+  text-align: center;
+}
+
+/* blockquote 样式 */
+.read-article-content .content-left .article-content blockquote {
+  display: block;
+  border-left: 8px solid #d0e5f2;
+  padding: 5px 10px;
+  margin: 10px 0;
+  line-height: 1.4;
+  font-size: 100%;
+  background-color: #f1f1f1;
+}
+
+/* code 样式 */
+.read-article-content .content-left .article-content code {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  padding: 3px 5px;
+  margin: 0 3px;
+}
+.read-article-content .content-left .article-content pre code {
+  display: block;
+}
+
+/* ul ol 样式 */
+.read-article-content .content-left .article-content ul,ol {
+  margin: 10px 0 10px 20px;
+}
+
+ /**************************************评论*********************************/
+
+.read-article-content .content-left .comment-show>div,.comment-show>h3{
+	padding: 0 25px;
+}
+.read-article-content .content-left .comment-show>h3{
+	margin: 0;
+	padding: 10px 25px;
+}
+
+/*评论回复框*/
+
+.read-article-content .content-left .lanbai-input-frame .lanbai-input{
+	border: 1px solid #eee;
+    padding: 10px;
+    outline: none;
+}
+.read-article-content .content-left .lanbai-input-frame .lanbai-input:hover{
+	border: 1px solid #3c8cd2;
+}
+.read-article-content .content-left .lanbai-input-frame .lanbai-input:active{
+	border: 1px solid #3c8cd2;
+}
+
+.read-article-content .content-left .lanbai-input-frame .lanbai-input:empty:before{
+    content: attr(placeholder);
+    color:#bbb;
+}
+.read-article-content .content-left .lanbai-input-frame .lanbai-button{
+    background: #3898ec;
+    color: #fff;
+    padding: 7px;
+    margin: 10px;
+    display: inline-block;
+    width: 70px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+.read-article-content .content-left .lanbai-input-frame .lanbai-button:hover{
+	background: #64b5f6;
+}
+.read-article-content .content-left .lanbai-input-frame .lanbai-button:active{
+	background: #1e88e5;
+}
+/*评论列表*/
+.read-article-content .content-left .comment-list li{
+	list-style-type: none;
+}
+.read-article-content .content-left .comment-list img{
+	width: 25px;
+	height: 25px;
+	border-radius: 25%;
+}
+
+.read-article-content .content-left li.comment-item{
+	border-bottom: 1px dashed #ddd;
+}
+
+.read-article-content .content-left li.comment-item .item-operate{
+	color: #0007;
+	font-size: 14px;
+}
+
+.read-article-content .content-left li.comment-item .item-operate li{
+	cursor: pointer;
+}
+.read-article-content .content-left li.comment-item .item-operate li:hover{
+	text-decoration: underline;
+}
+
+.read-article-content .content-left li.comment-item li:not(.common-page-list li){
+	float: left;
+	padding: 5px;
+	user-select: text;
+}
+
+.read-article-content .content-left ul.title-left li,
+.read-article-content .content-left ul.title-right li{
+	cursor: pointer;
+	user-select:none !important;
+}
+
+.read-article-content .content-left ul.title-right li:hover{
+	text-decoration: underline;
+}
+
+.read-article-content .content-left ul.title-left{
+	float: left;
+    line-height: 30px;
+}
+.read-article-content .content-left ul.title-right{
+	float: right;
+}
+.read-article-content .content-left .comment-item-content{
+	padding: 5px;
+}
+
+
+/*评论回复*/
+.read-article-content .content-left .comment-reply{
+	margin-left: 50px;
+    border-left: 5px solid #0004;
+    overflow: hidden;
+}
+.read-article-content .content-left .comment-reply .reply-item{
+	clear: left;
+    width: 100%;
+}
+
+/*评论下的回复*/
+.read-article-content .content-left .reply-items{
+	border-bottom: 1px solid #eee;
+}
+.read-article-content .content-left .reply-input>div{
+	margin: 10px 0 0 10px;
+}
+.read-article-content .content-left .reply-input .reply-person{
+	font-weight: bold;
+}
+.read-article-content .content-left .reply-input .reply-person span:last-child{
+	font-weight: normal;
+	color: #ff2825;
+	margin-left: 25px;
+	cursor: pointer;
+}
+.read-article-content .content-left .reply-input .lanbai-input{
+	background: #fff;
+	width: 85%;
+    margin: 10px 0 0 10px;
+}
+
+
+/************************************回复页码************************************/
+
+.read-article-content .content-left .reply-list-page li{
+	padding:0 !important;
+}
+
+.read-article-content .content-left .no-comment div{
+	font-size: 30px;
+	text-align: center;
+}
+
+/***********************************内容右边************************************/
+
+.read-article-content .content-right>div{
+	padding-bottom: 15px;
+	border-bottom: 1px solid #ececec;
+}
+.read-article-content .content-right .right-rank>div{
+	border-bottom: 1px solid #ececec;
+}
+.read-article-content .content-right .right-rank>div>div,
+.read-article-content .content-right .article-local-category>div{
+	padding: 5px 0;
+}
+
+.read-article-content .content-right .right-rank .rank-title,
+.read-article-content .content-right .article-local-category .category-title{
+	color: #0007;
+}
+.read-article-content .content-right .right-rank .rank-content,
+.read-article-content .content-right .article-local-category .category-content{
+	color: #5a5a5a;
+}
+.read-article-content .content-right ol{
+	margin-left: 20px;
+}
+
+.read-article-content .content-right ol li{
+	list-style-type:decimal;
+	padding: 5px 0;
+	cursor: pointer;
+    font-size: 14px;
+}
+.read-article-content .content-right ol li:hover{
+	color: #3898ec;
+	text-decoration: underline;
+}
+.read-article-content .content-right .article-local-category .category-content .category-name{
+	display: inline-block;
+}
+.read-article-content .content-right .article-local-category .category-content .category-count{
+	float: right;
+}
+
+.read-article-content .content-right .article-user>div{
+	padding: 5px 0;
+}
+
+.read-article-content .content-right .user-photo>img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	vertical-align: middle;
+}
+
+.read-article-content .content-right .user-profile{
+	overflow: hidden;
+}
+
+.read-article-content .content-right .user-profile>div{
+	display: inline-block;
+    vertical-align: middle;
+}
+.read-article-content .content-right .user-name>span{
+	user-select: none;
+	cursor: pointer;
+}
+
+.read-article-content .content-right .user-name>span:hover{
+	color: #3c8cd2;
+}
+
+.read-article-content .content-right .nick-name{
+	color: #5a5a5a;
+}
+
+.read-article-content .content-right .chat-with,
+.read-article-content .content-right .user-site-age{
+	color: #0007;
+	font-size: 14px;
+}
+
+.read-article-content .content-right .user-info li{
+	text-align: center;
+	display: inline-block;
+    margin: 5px 10px;
+    font-size: 15px;
+    color: #5a5a5a;
+}
+
+.read-article-content .content-right .user-subscribe{
+	margin: 0 auto;
+	max-width: fit-content;
+	background-color: #3898ec;
+	color: #fff;
+	padding: 5px 10px;
+	border-radius: 5px;
+	user-select:none;
+	cursor: pointer;
+}
+
+.read-article-content .content-right .user-subscribe:hover{
+	color: #ececec;
+}
+
+.read-article-content .content-right .user-subscribe:active{
+	background-color: #3c8cd2;
+}
+
+/***************************************笔记模态框************************************/
+.note-modal-spread{
+	height: 0;
+}
+.note-modal-spread>div{
+	position: relative;
+	padding: 5px;
+	width:25px;
+	height: auto;
+	right: 40px;
+	text-align: center;
+	border-radius: 100px;
+	background: #fdfdfd;
+	border: 1px solid #0007;
+	color: #0007;
+	font-size: 16px;
+	cursor: pointer;
+}
+.note-modal-collapse{
+	color: #27f;
+	cursor: pointer;
+	float: right;
+}
+.note-modal-collapse:active{
+	color: #2582ad;
+}
+#note-modal{
+	position: fixed;
+	top: 100px;
+	right: -25%;
+	width: 25%;
+	background: #fff;
+	border-radius: 5px;
+    box-shadow: -1px -1px 4px #e9e9e9;
+}
+#note-modal .note-header{
+	padding: 10px;
+	border-bottom: 1px solid #03a9f4;
+}
+#note-modal .note-content{
+	height: 350px;
+	overflow: auto;
+}
+.note-content .note-text{
+	border: none;
+	outline: none;
+}
+.note-footer{
+	border-top: 1px solid #03a9f4;
+}
+.note-footer .note-save{
+	margin: 5px;
+	padding: 5px 20px;
+	border-radius: 5px;
+	border: 1px solid #27f;
+	color: #27f;
+	display: inline-block;
+	cursor: pointer;
+}
+.note-footer .note-save:hover{
+	background: #eee;
+}
+.note-footer .note-save:active{
+	background: #ddd;
+}
+.note-footer .note-tip{
+	font-size: 1px;
+    color: #888;
+}

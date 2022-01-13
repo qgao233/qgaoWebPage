@@ -1,0 +1,266 @@
+/****************************header*********************************/
+#header{
+	background-color: #f4f4f4;
+}
+
+#header .qgao-version{
+	display: inline-block;
+	height: 33px;
+	line-height: 33px;
+	text-align: center;
+}
+
+#header .qgao-language{
+	float: right;
+	position: relative;
+}
+
+#header .qgao-language ul{
+	position: absolute;
+    left: -80px;
+}
+
+#header .qgao-language ul li{
+	height: 33px;
+	line-height: 33px;
+	text-align: center;
+	width: 80px;
+	cursor: pointer;
+	display: none;
+}
+
+#header .qgao-language ul li.active{
+	display: block;
+}
+
+#header .qgao-language ul:hover li{
+	display: block;
+}
+
+#header .qgao-language ul li:hover{
+	background-color: #ececec;
+	
+}
+
+#header .qgao-language ul li:active{
+	background-color: #0004;
+}
+
+#header .qgao-language ul li .arrow-down{
+	display: inline-block;
+}
+
+/****************************banner*********************************/
+
+#banner .banner-container>div{
+	float: left;
+}
+
+#banner .showlogo,#banner .search{
+	width: 35%;
+	padding: 30px 0;
+}
+#banner .login{
+	width: 30%;
+	padding: 30px 0;
+}
+
+#banner .showlogo>div{
+	float: left;
+}
+
+#banner .showlogo .logo-title{
+	font-family: Varela Round;
+	font-size: 30px;
+	line-height: 20px;
+    height: 30px;
+}
+
+#banner .search>div{
+	margin: 0 auto;
+    max-width: fit-content;
+    overflow: hidden;
+}
+
+#banner .search .search-input,#banner .search .search-button{
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	padding: 5px 5px;
+}
+
+#banner .search .search-input{
+	border: 1px solid #0004;
+	font-size: 20px;
+	border-radius: 5px 0 0 5px;
+	max-width: 80%;
+}
+
+#banner .search .search-input:hover{
+	border: 1px solid #3898ec;
+}
+
+#banner .search .search-input:focus{
+	border: 1px solid #3898ec;
+}
+
+#banner .search .search-button{
+	color: #fff;
+	background-color: #3898ec;
+	font-size: 15px;
+	border: 1px solid #3898ec;
+    border-left: 0px;
+    padding: 5px 10px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    
+    user-select: none;
+}
+
+#banner .search .search-button:hover{
+	color: #f4f4f4;
+}
+
+#banner .search .search-button:active{
+	background-color: #3c8cd2;
+	border-color: #3c8cd2;
+}
+
+#banner .login .login-text{
+	font-size: 30px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+
+/****************************navigator*********************************/
+
+#navigator .navigator-ul{
+	margin: 0 auto;
+	max-width: fit-content;
+}
+
+#navigator .navigator-ul li{
+	float: left;
+	height: 33px;
+	line-height: 33px;
+	text-align: center;
+	width: 80px;
+	cursor: pointer;
+	padding: 5px 30px;
+	
+	transition:font-size 0.2s;
+	-moz-transition:font-size 0.2s; /* Firefox 4 */
+	-webkit-transition:font-size 0.2s; /* Safari and Chrome */
+	-o-transition:font-size 0.2s; /* Opera */
+	
+}
+
+#navigator .navigator-ul li.active{
+	border-radius: 5px 5px 0 0;
+	background-color: #3898ec;
+	color: #fff;
+}
+
+#navigator .navigator-ul li.active:hover{
+	color: #f4f4f4;
+}
+
+#navigator .navigator-ul li:hover{
+	color: #5a5a5a;
+	font-size: 18px;
+}
+#navigator .navigator-ul li:active{
+	color: #000;
+}
+
+/****************************content*********************************/
+
+#content{
+	margin-top: 10px;
+}
+
+#content>div{
+	margin: 20px 0;
+}
+
+#content .content-c1,.content-c4{
+	background-color: #f4f4f4;
+}
+
+#content .content-c1 .content-homepng{
+	margin: 0 auto;
+	max-width: fit-content;
+	position: relative;
+}
+
+#content .content-c1 .content-slogan{
+	font-size: 80px;
+	text-align: center;
+	position: absolute;
+	left: -50px;
+	top: 20px;
+	font-family: "Playfair Display" !important;
+}
+
+#content .content-c1 img{
+	margin-left: 100px;
+	height: 400px;
+	max-width: 100%;
+}
+
+#content .c2-container{
+	max-width: fit-content;
+	text-align: center;
+}
+
+#content .c2-container>div{
+	margin: 0 auto;
+	max-width: 60%;
+}
+
+#content .c2-container .c2-title,.content-c3-container .c3-title{
+	font-size: 25px;
+	font-family: "Crimson Text" !important;
+	padding: 50px 0;
+}
+
+#content .c2-container .c2-content,.content-c3-container .c3-content{
+	font-family: "Quattrocento" !important;
+	color: #0007;
+	font-size: 15px;
+	line-height: 30px;
+}
+
+#content .content-c3-container{
+	margin: 0 auto;
+	max-width: 90%;
+}
+
+#content .content-c3-container>div,img{
+	float: left;
+	
+}
+
+#content .content-c3-container img{
+	margin: 0 auto;
+	width: 35%;
+	height: 300px;
+}
+
+#content .content-c3-container>div{
+	max-width: 65%;
+	text-align: center;
+}
+
+
+/****************************footer*********************************/
+
+#footer{
+	background-color: #f4f4f4;
+	padding: 50px 0;
+}
+
+#footer .footer-container{
+	max-width: fit-content !important;
+}

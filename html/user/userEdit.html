@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>个人主页--蓝白</title>
+		<link rel="shortcut icon" href="../../qgao.ico" /> 
+		
+		<script src="../../support/jquery/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+		<script src="../../js/commonTools.js"></script>
+		<script src="../../js/commonService.js"></script>
+		<script src="../../js/user/mainPage.js"></script>
+
+		<link href="../../support/iconfont-ali/iconfont.css" rel="stylesheet">
+
+		<link href="../../css/common.css" rel="stylesheet">
+		<link href="../../css/user/mainPage.css" rel="stylesheet">
+		<link href="../../css/user/userEdit.css" rel="stylesheet">
+		<link href="../../support/cropper/css/cropper.css" rel="stylesheet" >
+		<link href="../../css/user/lanbai-Cropper.css" rel="stylesheet" >
+		
+		<script src="../../support/cropper/js/cropper.js"></script>
+		<script src="../../support/cropper/js/canvas-to-blob.js"></script>
+		<script src="../../js/user/lanbai-cropper.js"></script>
+		
+		<script type="text/javascript">
+			
+			$(function(){
+				relative_path = getRelativePath();
+				initCommonHeader();
+				initCommonFooter();
+				checkCommonHeader();
+				
+				
+				var front_site = data_file.get_data(relative_path);
+				user_id = getRequestParameter().user_id;
+				
+				//初始化图片裁剪
+				$(".lanbai-cropper").lanbaiCropper(front_site);
+				//初始化“填写”点击事件
+				initWriteEvent(front_site);
+				//初始化用户信息
+				initGetMsg(front_site,relative_path);
+			})
+			
+			function initGetMsg(front_site,relative_path){
+				var headerParams = getHeaderParams();
+				
+				$.ajax({
+					type:"get",
+					url:front_site+"/user/detail/get",
+					async:true,
+					dataType:"json",
+					headers:headerParams,
+					success:function(data){
+						if(data.code==0){
+							var userDetail = data.data;
+							console.log(data)
+							$(".user-nick").html(userDetail.userNickname);
+							$(".user-desc").html(userDetail.userDescription);
+							$(".user-real").html(userDetail.userRealname);
+							$(".user-sex").html(userDetail.userSex);
+							$(".user-phone").html(userDetail.userPhone);
+							$(".user-birth").html(userDetail.userBirthday);
+							$(".user-address").html(userDetail.userAddress);
+							$(".user-educ").html(userDetail.userEducation);
+							$(".user-major").html(userDetail.userMajor);
+							//头像
+							user_id = userDetail.userId;
+							if(!!userDetail.userImageUri){
+								$(".img-icon").prop("src",front_site+"/img/user/get/"+user_id+"?random="+Math.random());
+							}else{
+								$(".img-icon").prop("src",relative_path+"img/photo.jpg");
+							}
+							
+							
+						}else if(data.code==2000){
+							jumpLogin(relative_path);
+						}else{
+							alert("服务器错误："+data.info);
+						}
+					}
+				});
+			}
+			
+			function initWriteEvent(front_site){
+				$(".write-input").click(function(){
+					$(this).css("display","none");
+					$(this).prev().css("display","none");
+					$(this).next().css("display","inline-block");
+				})
+				$(".btn-cancel").click(function(){
+					$(this).parent().css("display","none");
+					$(this).parent().prev().prev().css("display","inline-block");
+					$(this).parent().prev().css("display","inline-block");
+				})
+				$(".btn-save").click(function(){
+					$(this).parent().css("display","none");
+					var params = $(this).parent().children("form").serialize()
+					val = params.split("=")[1];;
+					//不为空
+					if(!!val){
+						
+						var headerParams = getHeaderParams();
+						
+						params = decodeURIComponent(params,true);
+						console.log(params);
+						val = decodeURIComponent(val,true);
+						var $this = $(this);
+						$.ajax({
+							type:"post",
+							url:front_site+"/user/detail/update",
+							dataType:"json",
+							headers:headerParams,
+							data:params,
+							success:function(data){
+								console.log(data)
+								if(data.code==0){
+									$this.parent().prev().prev().html(val);
+								}else if(data.code==2000){
+									jumpLogin(relative_path);
+								}else{
+									alert("更新失败："+data.info);
+								}
+							}
+						})
+						
+					}
+					$(this).parent().prev().prev().css("display","inline-block");
+					$(this).parent().prev().css("display","inline-block");
+				})
+			}
+		</script>
+	</head>
+	<body style="background: rgb(244,244,244);">
+		<div id="common-header" class="qgao-section"></div>
+		<div class="qgao-section">
+			<div class="qgao-container">
+				<div id="main-page-head">
+					<div class="user-photo" style="padding:0 0;">
+						<img class="img-icon" src="../img/photo.jpg">
+						<div class="photo-mask mask-hover open-upload">更换头像</div>
+					</div>
+					<div class="lanbai-cropper"></div>
+				
+					<div class="user-msg">
+						<span class="user-nick">白慕大</span>
+						<span class="write-input">填写</span>
+						<div class="save-input">
+							<form><input name="nickname"></form>
+							<div class="btn btn-save">保存</div>
+							<div class="btn btn-cancel">取消</div>
+						</div>
+						<div style="clear: both;"></div>
+						<ul>
+							<li class="user-desc">人生苦短ddddddddddddddddddddddddddddd</li>
+							<span class="write-input">填写</span>
+							<div class="save-input">
+								<form><input name="desc"></form>
+								<div class="btn btn-save">保存</div>
+								<div class="btn btn-cancel">取消</div>
+							</div>
+						</ul>
+					</div>
+					<div class="user-msg-mod"><a href="./mainPage.html?user_id=1521864246651">返回我的主页</a></div>
+				</div>
+				<div class="article-manage-body">
+					
+					<div>
+						<span class="title">真实姓名</span>
+						<span class="user-real">社长</span>
+						<span class="write-input">填写</span>
+						<div class="save-input">
+							<form><input name="realname"></form>
+							<div class="btn btn-save">保存</div>
+							<div class="btn btn-cancel">取消</div>
+						</div>
+						<div style="clear: both;"></div>
+					</div>
+					<div><span class="title">性别</span>
+						<span class="user-sex">男</span>
+						<span class="write-input">填写</span>
+						<div class="save-input">
+							<form>
+		  						<input type="radio" name="sex" id="male" value="男"/>
+		  						<label for="male">男</label>
+		  						
+		  						<input type="radio" name="sex" id="female" value="女"/>
+		  						<label for="female">女</label>
+		  						
+		  						<input type="radio" name="sex" id="secret" value="隐私"/>
+		  						<label for="secret">隐私</label>
+							</form>
+							<div class="btn btn-save">保存</div>
+							<div class="btn btn-cancel">取消</div>
+						</div>
+						<div style="clear: both;"></div>
+					</div>
+					<div><span class="title">电话</span>
+						<span class="user-phone">123456</span>
+						<span class="write-input">填写</span>
+						<div class="save-input">
+							<form><input name="phone"></form>
+							<div class="btn btn-save">保存</div>
+							<div class="btn btn-cancel">取消</div>
+						</div>
+						<div style="clear: both;"></div>
+					</div>
+					<div><span class="title">生日</span>
+						<span class="user-birth">白垩纪</span>
+						<span class="write-input">填写</span>
+						<div class="save-input">
+							<form><input type="date" name="birthdate"></form>
+							<div class="btn btn-save">保存</div>
+							<div class="btn btn-cancel">取消</div>
+						</div>
+						<div style="clear: both;"></div>
+					</div>
+					<div><span class="title">住址</span>
+						<span class="user-address">宇宙</span>
+						<span class="write-input">填写</span>
+						<div class="save-input">
+							<form><input name="address"></form>
+							<div class="btn btn-save">保存</div>
+							<div class="btn btn-cancel">取消</div>
+						</div>
+						<div style="clear: both;"></div>
+					</div>
+					<div><span class="title">教育背景</span>
+						<span class="user-educ">本科</span>
+						<span class="write-input">填写</span>
+						<div class="save-input">
+							<form><input name="education"></form>
+							<div class="btn btn-save">保存</div>
+							<div class="btn btn-cancel">取消</div>
+						</div>
+						<div style="clear: both;"></div>
+					</div>
+					<div><span class="title">所在行业</span>
+						<span class="user-major">IT</span>
+						<span class="write-input">填写</span>
+						<div class="save-input">
+							<form><input name="major"></form>
+							<div class="btn btn-save">保存</div>
+							<div class="btn btn-cancel">取消</div>
+						</div>
+						<div style="clear: both;"></div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div id="common-footer" class="qgao-section"></div>
+	</body>
+</html>

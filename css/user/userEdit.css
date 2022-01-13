@@ -1,0 +1,98 @@
+#main-page-head img {
+    background: rgba(0,0,0,0.1);
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    border: 3px solid #eee;
+}
+
+.article-manage-body{
+    padding: 20px;
+    padding-left: 250px;
+    padding-right: 40px;
+}
+
+.article-manage-body>div{
+	font-size: 15px;
+	font-weight: bold;
+	/*font-family: "arial black";*/
+	padding: 30px 20px;
+	border-bottom: solid 1px #eee;
+}
+
+.article-manage-body>div>span{
+	display: inline-block;
+	float: left;
+	padding: 5px;
+
+}
+
+.article-manage-body>div>span.title{
+	width:100px;
+}
+
+.write-input{
+	cursor: pointer;
+	color: #28e;
+	display: inline-block;
+}
+
+.save-input{
+	display: none;
+}
+
+.save-input>div{
+	float: left;
+	margin-right: 5px;
+}
+
+
+
+.save-input .btn{
+	padding: 5px 20px;
+}
+
+.save-input input{
+	padding: 5px;
+	border-radius: 5px;
+	outline: none;
+	border: 1px solid #ddd;
+}
+.save-input input:focus{
+	border: 1px solid #27f;
+}
+
+.save-input .btn-save{
+	background: #27f;
+	color: #fff;
+	
+}
+
+.save-input .btn-cancel{
+	color: #aaa;
+	border: 1px solid #aaa;
+}
+
+div.user-photo{
+	position: relative;
+}
+
+.photo-mask{
+	position: absolute;
+	top:0;
+	bottom:0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	padding:45% 0;
+	color: #000;
+	font-size: 30px;
+	background: #ddd;
+	cursor: pointer;
+	border-radius: 10px;
+	opacity: .2; 
+}
+
+.mask-hover:hover{
+	opacity: 0.5;
+}
